@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DistractMe</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_distractions">Distractions</string>
+    <string name="title_tracker">Tracker</string>
+    <string name="title_youtube">Youtube</string>
+    <string name="title_grounding">5-4-3-2-1 Grounding</string>
+    <string name="title_breathing">Breathing</string>
+    <string name="guest"><u><i>Proceed as Guest</i></u></string>
+</resources>
