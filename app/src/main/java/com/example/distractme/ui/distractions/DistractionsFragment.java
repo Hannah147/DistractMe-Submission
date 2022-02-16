@@ -105,38 +105,42 @@ public class DistractionsFragment extends Fragment {
                                 getActivity().startActivity(intent);
                             }
                         });
-
-
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
 
                 // show it
                 alertDialog.show();
-//                Uri uri = Uri.parse("http://www.google.com"); // missing 'http://' will cause crashed
-//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                startActivity(intent);
-//                Intent intent = new Intent(getContext(), BreathingFragment.class);
-//                startActivity(intent);
-//                finish();
+            }
+        });
 
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.mobile_navigation, BreathingFragment.class, null)
-//                        .setReorderingAllowed(true)
-//                        .addToBackStack("name") // name can be null
-//                        .commit();
+        ImageView ivBreathing = (ImageView) root.findViewById(R.id.ivBreathing);
 
-//                Fragment fragment = new tasks();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.content_frame, fragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
+        ivBreathing.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                // set title
+                alertDialogBuilder.setTitle("Breathing Exercise");
+                alertDialogBuilder.setCancelable(false);
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Focus on the Ripples as you Breathe :)")
+                        .setCancelable(true)
+                        .setNeutralButton( "Okay",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), BreatheInActivity.class);
+                                getActivity().startActivity(intent);
+                            }
+                        });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
 
-//                Intent intent = new Intent();
-//                intent.setClass(getActivity(), BreathingFragment.class);
-//                getActivity().startActivity(intent);
+                // show it
+                alertDialog.show();
             }
         });
 
@@ -146,16 +150,27 @@ public class DistractionsFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-//                Uri uri = Uri.parse("http://www.itsligo.ie"); // missing 'http://' will cause crashed
-//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//                startActivity(intent);
-
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), DrawingActivity.class);
                 getActivity().startActivity(intent);
 
             }
         });
+
+        ImageView ivDraw = (ImageView) root.findViewById(R.id.ivDraw);
+
+        ivDraw.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), DrawingActivity.class);
+                getActivity().startActivity(intent);
+
+            }
+        });
+
         return root;
     }
 

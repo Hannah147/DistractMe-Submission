@@ -19,7 +19,7 @@
         android:layout_weight="0.15"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="@color/colorPrimary">
+        android:background="#5a3e7d">
 
         <ImageView
             android:id="@+id/main_return"
