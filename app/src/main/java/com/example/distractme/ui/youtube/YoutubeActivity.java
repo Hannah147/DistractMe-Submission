@@ -217,11 +217,7 @@ public class YoutubeActivity extends YouTubeBaseActivity {
 
     public void return_to_distractions(View view) {
         Intent intent = new Intent();
-        intent.setClass(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-        finish();
+        intent.setClass(YoutubeActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

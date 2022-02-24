@@ -83,6 +83,9 @@ public class TwoThingsSmellActivity extends AppCompatActivity {
             }
 
         });
+
+        cb_2nd_smell.setClickable(false);
+        cb_1st_smell.setClickable(false);
     }
 
     public void return_to_distractions(View view) {

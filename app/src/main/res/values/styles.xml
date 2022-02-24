@@ -28,5 +28,12 @@
         <item name="android:fontFamily">@font/kgkeepyourheadup</item>
     </style>
 
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#6e818d</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#cfced6</item>
+        <!-- Used for the background -->
+        <item name="android:background">#9eadb8</item>
+    </style>
 
 </resources>

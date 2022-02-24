@@ -1,30 +1,30 @@
 //package com.example.distractme.ui.tracker;
 //
-//import android.app.Activity;
-//import android.content.DialogInterface;
-//import android.graphics.ColorMatrix;
-//import android.graphics.ColorMatrixColorFilter;
-//import android.os.Bundle;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.Button;
-//import android.widget.EditText;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//import android.widget.Toast;
+//        import android.app.Activity;
+//        import android.content.DialogInterface;
+//        import android.graphics.ColorMatrix;
+//        import android.graphics.ColorMatrixColorFilter;
+//        import android.os.Bundle;
+//        import android.view.LayoutInflater;
+//        import android.view.View;
+//        import android.view.ViewGroup;
+//        import android.widget.Button;
+//        import android.widget.EditText;
+//        import android.widget.ImageView;
+//        import android.widget.TextView;
+//        import android.widget.Toast;
 //
-//import androidx.annotation.NonNull;
-//import androidx.appcompat.app.AlertDialog;
-//import androidx.fragment.app.Fragment;
-//import androidx.lifecycle.ViewModelProviders;
-//import androidx.recyclerview.widget.LinearLayoutManager;
-//import androidx.recyclerview.widget.RecyclerView;
+//        import androidx.annotation.NonNull;
+//        import androidx.appcompat.app.AlertDialog;
+//        import androidx.fragment.app.Fragment;
+//        import androidx.lifecycle.ViewModelProviders;
+//        import androidx.recyclerview.widget.LinearLayoutManager;
+//        import androidx.recyclerview.widget.RecyclerView;
 //
-//import com.example.distractme.R;
-//import com.example.distractme.ui.adapter.RecyclerViewAdapter;
+//        import com.example.distractme.R;
+//        import com.example.distractme.ui.adapter.RecyclerViewAdapter;
 //
-//import java.util.ArrayList;
+//        import java.util.ArrayList;
 //
 //public class TrackerFragment extends Fragment {
 //
@@ -32,6 +32,7 @@
 //    Activity mTracker = this.getActivity();
 //    String currentMood;
 //    ArrayList<String> allMoodEvents = new ArrayList<>();
+//    ArrayList<Integer> allMoodsArray = new ArrayList<>();
 //    RecyclerViewAdapter adapter;
 //    private RecyclerView recyclerView;
 //    Boolean moodClicked = false;
@@ -152,6 +153,7 @@
 //                currentMood = "Upset";
 //                tvQuestion.setText("What made you feel " + currentMood + "?");
 //                moodClicked = true;
+//                allMoodsArray.add(1);
 ////                ivMoodAdded.setImageResource(R.drawable.upset_face);
 //            }
 //        });
@@ -171,6 +173,7 @@
 //                currentMood = "Sad";
 //                tvQuestion.setText("What made you feel " + currentMood + "?");
 //                moodClicked = true;
+//                allMoodsArray.add(2);
 ////                ivMoodAdded.setImageResource(R.drawable.sad_face);
 //            }
 //        });
@@ -190,6 +193,7 @@
 //                currentMood = "Neutral";
 //                tvQuestion.setText("What made you feel " + currentMood + "?");
 //                moodClicked = true;
+//                allMoodsArray.add(3);
 ////                ivMoodAdded.setImageResource(R.drawable.neutral_face);
 //            }
 //        });
@@ -209,6 +213,7 @@
 //                currentMood = "Happy";
 //                tvQuestion.setText("What made you feel " + currentMood + "?");
 //                moodClicked = true;
+//                allMoodsArray.add(4);
 ////                ivMoodAdded.setImageResource(R.drawable.happy_face);
 //            }
 //        });
@@ -228,6 +233,7 @@
 //                currentMood = "Extremely Happy";
 //                tvQuestion.setText("What made you feel " + currentMood + "?");
 //                moodClicked = true;
+//                allMoodsArray.add(5);
 ////                ivMoodAdded.setImageResource(R.drawable.extremely_happy_face);
 //            }
 //        });
@@ -242,7 +248,7 @@
 //            {
 //                recyclerView = root.findViewById(R.id.rvMoods);
 //                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//                adapter = new RecyclerViewAdapter(getContext(), allMoodEvents, ivMoodAdded, currentMood);
+//                adapter = new RecyclerViewAdapter(getContext(), allMoodEvents, ivMoodAdded, allMoodsArray);
 ////        adapter.setClickListener((RecyclerViewAdapter.ItemClickListener) getActivity());
 //                recyclerView.setAdapter(adapter);
 //                View rootRecycle = inflater.inflate(R.layout.recyclerview_row, container, false);
@@ -251,9 +257,9 @@
 //
 ////                ivMoodAdded = (ImageView) rootRecycle.findViewById(R.id.ivMoodAdded);
 //                if(moodClicked == true) {
-//                String moodEvent = etMoodEvent.getText().toString();
-//                allMoodEvents.add(moodEvent);
-//                moodEvent = "";
+//                    String moodEvent = etMoodEvent.getText().toString();
+//                    allMoodEvents.add(moodEvent);
+//                    moodEvent = "";
 //
 //
 ////                    switch(currentMood) {
@@ -288,6 +294,7 @@
 //                    etMoodEvent.setText("");
 ////                    currentMood = "";
 //                    tvQuestion.setText("");
+////                    allMoodsArray.clear();
 //
 //
 //                }else {
@@ -306,38 +313,11 @@
 //
 //
 //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
 package com.example.distractme.ui.tracker;
 
 import android.app.Activity;
@@ -345,6 +325,7 @@ import android.content.DialogInterface;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -386,8 +367,7 @@ public class TrackerFragment extends Fragment {
         TextView tvQuestion = root.findViewById(R.id.tvQuestion);
 
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                getActivity());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogCustom));
         // set title
         alertDialogBuilder.setTitle("Hello!");
         alertDialogBuilder.setCancelable(true);
@@ -588,8 +568,14 @@ End of code to make black and white
             {
                 recyclerView = root.findViewById(R.id.rvMoods);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                adapter = new RecyclerViewAdapter(getContext(), allMoodEvents, ivMoodAdded, allMoodsArray);
-//        adapter.setClickListener((RecyclerViewAdapter.ItemClickListener) getActivity());
+                final RecyclerViewAdapter.MyClickListener mcl = new RecyclerViewAdapter.MyClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Toast.makeText(getActivity(), "Click Worked!", Toast.LENGTH_LONG).show();
+                    }
+                };
+                adapter = new RecyclerViewAdapter(getContext(), allMoodEvents, ivMoodAdded, allMoodsArray, mcl);
+//                adapter.setClickListener(this);
                 recyclerView.setAdapter(adapter);
                 View rootRecycle = inflater.inflate(R.layout.recyclerview_row, container, false);
 

@@ -104,6 +104,10 @@ public class ThreeThingsHearActivity extends AppCompatActivity {
             }
 
         });
+
+        cb_1st_hear.setClickable(false);
+        cb_2nd_hear.setClickable(false);
+        cb_3rd_hear.setClickable(false);
     }
 
     public void return_to_distractions(View view) {

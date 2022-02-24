@@ -3,6 +3,7 @@ package com.example.distractme.ui.distractions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +90,7 @@ public class DistractionsFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogCustom));
                 // set title
                 alertDialogBuilder.setTitle("Breathing Exercise");
                 alertDialogBuilder.setCancelable(false);

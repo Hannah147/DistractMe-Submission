@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#9eadb8"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageButton
@@ -17,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
+        app:srcCompat="@drawable/ic_baseline_home_grounding_24" />
 
     <TextView
         android:id="@+id/tv_1_thing_taste"
@@ -26,6 +27,7 @@
         android:fontFamily="@font/kgkeepyourheadup"
         android:text="1 Thing You Can Taste"
         android:textSize="28dp"
+        android:textColor="#ECEBF4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -37,6 +39,7 @@
         android:id="@+id/cb_1st_taste"
         android:layout_width="37dp"
         android:layout_height="42dp"
+        android:buttonTint="#ECEBF4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
@@ -51,6 +54,9 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Something You Can Taste"
+        android:textColor="#ECEBF4"
+        android:backgroundTint="#cccbd4"
+        android:textColorHint="#cccbd4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.699"
@@ -64,6 +70,7 @@
         android:layout_height="50dp"
         android:text="Reminder"
         android:onClick="next_page"
+        android:backgroundTint="#ECEBF4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.865"
@@ -78,6 +85,7 @@
         android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
         android:onClick="previous_page"
         android:text=" Previous"
+        android:backgroundTint="#ECEBF4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.136"

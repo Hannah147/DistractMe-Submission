@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.distractme.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_distractions"
         android:name="com.example.distractme.ui.distractions.DistractionsFragment"
         android:label="@string/title_distractions"
@@ -28,4 +22,11 @@
     android:name="com.example.distractme.ui.tracker.TrackerFragment"
     android:label="@string/title_tracker"
     tools:layout="@layout/fragment_tracker" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.distractme.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
 </navigation>

@@ -127,6 +127,10 @@ public class FourThingsTouchActivity extends AppCompatActivity {
 
         });
 
+        cb_1st_touch.setClickable(false);
+        cb_2nd_touch.setClickable(false);
+        cb_3rd_touch.setClickable(false);
+        cb_4th_touch.setClickable(false);
     }
 
     public void return_to_distractions(View view) {

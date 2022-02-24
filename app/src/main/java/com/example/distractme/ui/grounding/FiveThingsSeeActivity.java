@@ -147,6 +147,11 @@ public class FiveThingsSeeActivity extends AppCompatActivity {
 
         });
 
+        cb_1st_see.setClickable(false);
+        cb_2nd_see.setClickable(false);
+        cb_3rd_see.setClickable(false);
+        cb_4th_see.setClickable(false);
+        cb_5th_see.setClickable(false);
     }
 
     public void return_to_distractions(View view) {
@@ -155,26 +160,6 @@ public class FiveThingsSeeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void check_if_checked() {
-        if (cb_1st_see.isChecked() == true && cb_2nd_see.isChecked()== true && cb_3rd_see.isChecked()== true && cb_4th_see.isChecked()== true && cb_5th_see.isChecked()== true) {
-            check_all = true;
-        } else if(cb_1st_see.isChecked()== true && cb_2nd_see.isChecked()== true && cb_3rd_see.isChecked()== true && cb_4th_see.isChecked()== true) {
-            Toast.makeText(this, "Think of 1 More Thing You Can See!", Toast.LENGTH_LONG).show();
-            check_all = false;
-        } else if(cb_1st_see.isChecked()== true && cb_2nd_see.isChecked()== true && cb_3rd_see.isChecked()== true) {
-            Toast.makeText(this, "Think of 2 More Things You Can See!", Toast.LENGTH_LONG).show();
-            check_all = false;
-        } else if(cb_1st_see.isChecked()== true && cb_2nd_see.isChecked()== true) {
-            Toast.makeText(this, "Think of 3 More Things You Can See!", Toast.LENGTH_LONG).show();
-            check_all = false;
-        } else if(cb_1st_see.isChecked()== true) {
-            Toast.makeText(this, "Think of 4 More Things You Can See!", Toast.LENGTH_LONG).show();
-            check_all = false;
-        } else {
-            Toast.makeText(this, "Think of 5 Things You Can See!", Toast.LENGTH_LONG).show();
-            check_all = false;
-        }
-    }
 
     public void next_page(View view) {
         if(cb_1st_see.isChecked() == true && cb_2nd_see.isChecked()== true && cb_3rd_see.isChecked()== true && cb_4th_see.isChecked()== true && cb_5th_see.isChecked()== true) {

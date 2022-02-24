@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ecebf3">
 
 <!--    <TextView-->
 <!--        android:id="@+id/tv_confirmation"-->
@@ -73,7 +74,7 @@
     <TextView
         android:id="@+id/tv_breathe_in"
         android:layout_width="181dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/kgkeepyourheadup"
         android:text="Breathe In..."
         android:textSize="32dp"

@@ -61,6 +61,8 @@ public class OneThingTasteActivity extends AppCompatActivity {
             }
 
         });
+
+        cb_1st_taste.setClickable(false);
     }
 
     public void return_to_distractions(View view) {
