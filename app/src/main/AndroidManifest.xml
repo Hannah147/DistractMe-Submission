@@ -6,6 +6,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,10 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".ui.oddoneout.FindTheDancerActivity"></activity>
+        <activity android:name=".ui.oddoneout.FindTheMoonActivity" />
+        <activity android:name=".ui.oddoneout.FindTheSkunkActivity" />
+        <activity android:name=".ui.oddoneout.FindTheDogActivity" />
+        <activity android:name=".ui.checkin.MeasureEmotionActivity" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,64 +45,60 @@
         <activity
             android:name=".ui.drawing.DrawingActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
-        </activity>
-        
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.breathing.BreatheInActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_breathing"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.breathing.BreatheOutActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_breathing"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.breathing.BreatheInRepeatActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_breathing"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.youtube.YoutubeActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_breathing"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.grounding.FiveThingsSeeActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.grounding.FourThingsTouchActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.grounding.ThreeThingsHearActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.grounding.TwoThingsSmellActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.grounding.OneThingTasteActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
         <activity
             android:name=".ui.grounding.GroundingActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
-            android:noHistory="true"></activity>
+            android:noHistory="true" />
     </application>
 
 </manifest>

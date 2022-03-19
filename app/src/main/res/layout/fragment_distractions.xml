@@ -70,6 +70,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.845" />
 
+    <Button
+        android:id="@+id/btn_oddoneout"
+        android:layout_width="150dp"
+        android:layout_height="52dp"
+        android:background="#6e818d"
+        android:text="Odd One Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.961" />
+
     <ImageView
         android:id="@+id/ivBreathing"
         android:layout_width="150dp"

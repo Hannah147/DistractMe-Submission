@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.distractme.ui.oddoneout.FindTheDogActivity;
 import com.example.distractme.R;
 import com.example.distractme.ui.breathing.BreatheInActivity;
 import com.example.distractme.ui.drawing.DrawingActivity;
@@ -171,6 +172,19 @@ public class DistractionsFragment extends Fragment {
 
             }
         });
+
+        Button btn_oddoneout = (Button) root.findViewById(R.id.btn_oddoneout);
+        btn_oddoneout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), FindTheDogActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
 
         return root;
     }
