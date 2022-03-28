@@ -4,7 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.oddoneout.FindTheDogActivity">
+    android:background="#ecebf3"
+    tools:context=".ui.oddoneout.FindTheDancerActivity">
+
+    <ImageButton
+        android:id="@+id/img_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="return_to_distractions"
+        android:background="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -437,7 +452,7 @@
         app:srcCompat="@drawable/dancer" />
 
     <ImageView
-        android:id="@+id/iv_odddogout"
+        android:id="@+id/iv_odddancerout"
         android:layout_width="53dp"
         android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -642,15 +657,16 @@
 
     <TextView
         android:id="@+id/tvHeading"
-        android:layout_width="match_parent"
+        android:layout_width="900px"
         android:layout_height="wrap_content"
         android:fontFamily="@font/walkway_semi_bold"
         android:text="Find The Odd Dancer Out!"
-        android:textAlignment="center"
-        android:textSize="65px"
+        android:textAlignment="viewEnd"
+        android:textSize="60px"
+        android:paddingRight="20px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />

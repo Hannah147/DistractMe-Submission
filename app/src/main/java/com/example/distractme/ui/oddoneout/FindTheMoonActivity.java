@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.distractme.MainActivity;
 import com.example.distractme.R;
 
 public class FindTheMoonActivity extends AppCompatActivity {
@@ -52,4 +53,12 @@ public class FindTheMoonActivity extends AppCompatActivity {
         SuccessDialog.show();
 
     }
+
+    public void return_to_distractions(View view) {
+        Intent intent = new Intent();
+        intent.setClass(FindTheMoonActivity.this, MainActivity.class);
+        startActivity(intent);
+
+    }
+
 }
