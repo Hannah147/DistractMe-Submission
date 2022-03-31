@@ -182,7 +182,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mData = data;
         this.mMoodAddedImage = moodAddedImage;
 //        this.mMoodAdded = moodAdded;
-        this.mDataImg = dataImg;
+//        this.mDataImg = dataImg;
         mMyClickListener = myClickListener;
     }
 
@@ -208,30 +208,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String mood = mData.get(position);
 //        ImageView moodImage = mMoodAddedImage.get(position);
         holder.myTextView.setText(mood);
-        Integer moodImg = mDataImg.get(position);
+//        Integer moodImg = mDataImg.get(position);
 
-        switch (moodImg) {
-            case 1:
-//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
-                holder.myImageView.setImageResource(R.drawable.upset_face);
-                break;
-            case 2:
-//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
-                holder.myImageView.setImageResource(R.drawable.sad_face);
-                break;
-            case 3:
-//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
-                holder.myImageView.setImageResource(R.drawable.neutral_face);
-                break;
-            case 4:
-//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
-                holder.myImageView.setImageResource(R.drawable.happy_face);
-                break;
-            case 5:
-//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
-                holder.myImageView.setImageResource(R.drawable.extremely_happy_face);
-                break;
-        }
+//        switch (moodImg) {
+//            case 1:
+////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
+//                holder.myImageView.setImageResource(R.drawable.upset_face);
+//                break;
+//            case 2:
+////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
+//                holder.myImageView.setImageResource(R.drawable.sad_face);
+//                break;
+//            case 3:
+////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
+//                holder.myImageView.setImageResource(R.drawable.neutral_face);
+//                break;
+//            case 4:
+////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
+//                holder.myImageView.setImageResource(R.drawable.happy_face);
+//                break;
+//            case 5:
+////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
+//                holder.myImageView.setImageResource(R.drawable.extremely_happy_face);
+//                break;
+//        }
     }
 
     // total number of rows
@@ -276,13 +276,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                    myImageView.setImageResource(R.drawable.extremely_happy_face);
 //                    break;
 //            }
-
         }
 
 //        @Override
 //        public void onClick(View view) {
 //            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 //        }
+
     }
 
     public interface MyClickListener {

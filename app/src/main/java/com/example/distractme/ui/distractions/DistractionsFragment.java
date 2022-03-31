@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.distractme.ui.googlemaps.MapsActivity;
 import com.example.distractme.ui.oddoneout.FindTheDogActivity;
 import com.example.distractme.R;
 import com.example.distractme.ui.breathing.BreatheInActivity;
@@ -185,6 +186,41 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
+        ImageView ivOddoneout = (ImageView) root.findViewById(R.id.ivOddOneOut);
+        ivOddoneout.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), FindTheDogActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        Button btn_somewhere = (Button) root.findViewById(R.id.btn_map);
+        btn_somewhere.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), MapsActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        ImageView ivSomewhere = (ImageView) root.findViewById(R.id.ivMap);
+        ivSomewhere.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), MapsActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         return root;
     }

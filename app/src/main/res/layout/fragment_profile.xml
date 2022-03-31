@@ -5,19 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9eadb8"
+    android:layout_marginTop="200dp"
     tools:context=".ui.profile.ProfileFragment">
 
     <Button
-        android:id="@+id/btn_checkin"
-        android:layout_width="150dp"
+        android:id="@+id/btn_viewprofile"
+        android:layout_width="300dp"
         android:layout_height="52dp"
         android:background="#6e818d"
-        android:text="Check In"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:paddingRight="10dp"
+        android:text="View Profile"
+        android:textColor="#ecebf3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.254" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="300dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#6e818d"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:paddingRight="10dp"
+        android:text="Logout"
+        android:textColor="#ecebf3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_viewprofile"
+        app:layout_constraintVertical_bias="0.079" />
+
+    <Button
+        android:id="@+id/btn_testlinks"
+        android:layout_width="300dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#6e818d"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:paddingRight="10dp"
+        android:text="Online Mental Health Test"
+        android:textColor="#ecebf3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_logout"
+        app:layout_constraintVertical_bias="0.083" />
+
+    <Button
+        android:id="@+id/btn_EmergencyHelplines"
+        android:layout_width="300dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#6e818d"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:paddingRight="10dp"
+        android:text="Emergency Helplines"
+        android:textColor="#ecebf3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_testlinks"
+        app:layout_constraintVertical_bias="0.177" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

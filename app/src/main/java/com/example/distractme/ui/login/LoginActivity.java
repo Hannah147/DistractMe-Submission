@@ -3,104 +3,146 @@ package com.example.distractme.ui.login;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.distractme.MainActivity;
 import com.example.distractme.R;
+import com.example.distractme.ui.authentication.Register;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public EditText etUserEmail, etUserPassword;
-    String userEmail, userPassword, userConfirmedEmail, userConfirmedPassword;
+    EditText mEmail,mPassword;
+    Button mLoginBtn;
+    TextView mCreateBtn,forgotTextLink;
+    ProgressBar progressBar;
+    FirebaseAuth fAuth;
+    Boolean guestLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUserEmail = findViewById(R.id.etUserEmail);
-        etUserPassword = findViewById(R.id.etUserPassword);
+        guestLogin = false;
+        mEmail = findViewById(R.id.etUserEmail);
+        mPassword = findViewById(R.id.etUserPassword);
+        progressBar = findViewById(R.id.progressBar);
+        fAuth = FirebaseAuth.getInstance();
+        mLoginBtn = findViewById(R.id.btn_login);
+        forgotTextLink = findViewById(R.id.forgotPassword);
 
-        // change when firebase is setup, just for testing purposes here
-//        userConfirmedPassword = "Hannah123";
-//        userConfirmedEmail = "hannah14@gmail.com";
-
-        etUserEmail.addTextChangedListener(new TextWatcher() {
-
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void afterTextChanged(Editable s) {
-                if (etUserEmail.toString() != null) {
-                    userEmail = etUserEmail.getText().toString();
+            public void onClick(View v) {
+
+                String email = mEmail.getText().toString().trim();
+                String password = mPassword.getText().toString().trim();
+
+                if(TextUtils.isEmpty(email)){
+                    mEmail.setError("Email is Required.");
+                    return;
                 }
-            }
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
+                if(TextUtils.isEmpty(password)){
+                    mPassword.setError("Password is Required.");
+                    return;
                 }
+
+                if(password.length() < 6){
+                    mPassword.setError("Password Must be >= 6 Characters");
+                    return;
+                }
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                // authenticate the user
+
+                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
+                            guestLogin = false;
+                            Intent intent = new Intent();
+                            intent.putExtra("guestLogin", guestLogin);
+                            intent.setClass(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+
+                    }
+                });
+
+            }
         });
 
-        etUserPassword.addTextChangedListener(new TextWatcher() {
-
+        forgotTextLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void afterTextChanged(Editable s) {
-                if (etUserPassword.toString() != null) {
-                    userPassword = etUserPassword.getText().toString();
-                }
-            }
+            public void onClick(View v) {
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
+                final EditText resetMail = new EditText(v.getContext());
+                final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                passwordResetDialog.setTitle("Reset Password ?");
+                passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
+                passwordResetDialog.setView(resetMail);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
+                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // extract the email and send reset link
+                        String mail = resetMail.getText().toString();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(LoginActivity.this, "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LoginActivity.this, "Error ! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // close the dialog
+                    }
+                });
+
+                passwordResetDialog.create().show();
+
             }
         });
-
 
     }
 
+    // press login button
     public void login(View view) {
-        userEmail = etUserEmail.getText().toString();
-        userPassword = etUserPassword.getText().toString();
-
-        if(userEmail == userConfirmedEmail && userPassword == userConfirmedPassword) {
-            Toast.makeText(this, "Incorrect Email and Password Entered... Please Try Again.", Toast.LENGTH_LONG).show();
-            userEmail = "";
-            userPassword = "";
-        } else if(userEmail == userConfirmedEmail && userPassword != userConfirmedPassword) {
-            Toast.makeText(this, "Incorrect Password Entered... Please Try Again.", Toast.LENGTH_LONG).show();
-            userEmail = "";
-            userPassword = "";
-        } else if(userEmail != userConfirmedEmail && userPassword == userConfirmedPassword) {
-            Toast.makeText(this, "Email not Found... Please Try Again.", Toast.LENGTH_LONG).show();
-            userEmail = "";
-            userPassword = "";
-        } else if (userEmail != userConfirmedEmail && userPassword != userConfirmedPassword) {
-            Intent intent = new Intent();
-            intent.setClass(this, MainActivity.class);
-            startActivity(intent);
-        }
-
-        userConfirmedPassword = "Hannah123";
-        userConfirmedEmail = "hannah14@gmail.com";
     }
 
+    // Method to proceed as a guest
     public void proceed(View view) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
         // set title
@@ -111,8 +153,10 @@ public class LoginActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton( "Yes",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
+                        guestLogin = true;
                         dialog.cancel();
                         Intent intent = new Intent();
+                        intent.putExtra("guestLogin", guestLogin);
                         intent.setClass(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
 
@@ -131,6 +175,13 @@ public class LoginActivity extends AppCompatActivity {
 
         // show it
         alertDialog.show();
+
+    }
+
+    public void toRegister(View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, Register.class);
+        startActivity(intent);
 
     }
 }

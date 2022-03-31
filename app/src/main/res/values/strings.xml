@@ -9,6 +9,8 @@
     <string name="title_breathing">Breathing</string>
     <string name="title_profile">Profile</string>
     <string name="guest"><u><i>Proceed as Guest</i></u></string>
+    <string name="ForgotPassword"><u><i>Forgot Password?</i></u></string>
+    <string name="alreadyRegistered"><u><i>Already Registered? Login Here!</i></u></string>
     <string name="app_name_checkin" translatable="false">Text Classification</string>
     <string name="edit_text_hint" translatable="false">How are you?</string>
     <string name="button_confirm" translatable="false">Predict</string>

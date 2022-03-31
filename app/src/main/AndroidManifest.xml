@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permisson.READ_GSERVICES"/>
 
     <queries>
         <intent>
@@ -19,12 +23,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.oddoneout.FindTheDancerActivity"></activity>
+
+<!--        <meta-data-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="AIzaSyCZZhjUsxROhjnBVCrWmWkM6CM0CVyrufY" />-->
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDYMwrpkBruG7OLwmbtapYr2csCblxFiN4"/>
+
+        <activity
+            android:name=".ui.authentication.GuestViewProfile"
+            android:exported="false" />
+        <activity android:name=".ui.oddoneout.FindTheDancerActivity" />
         <activity android:name=".ui.oddoneout.FindTheMoonActivity" />
         <activity android:name=".ui.oddoneout.FindTheSkunkActivity" />
         <activity android:name=".ui.oddoneout.FindTheDogActivity" />
         <activity android:name=".ui.checkin.MeasureEmotionActivity" />
-        <activity android:name=".ui.login.LoginActivity">
+        <activity android:name=".ui.authentication.EditProfile" />
+        <activity android:name=".ui.authentication.ViewProfile" />
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.googlemaps.MapsActivity" android:label="Map"/>
+
+        <activity
+            android:name=".ui.authentication.Register"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
