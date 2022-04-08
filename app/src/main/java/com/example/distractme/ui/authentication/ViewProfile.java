@@ -2,7 +2,6 @@ package com.example.distractme.ui.authentication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,7 +79,6 @@ public class ViewProfile extends AppCompatActivity {
 
         if(!user.isEmailVerified()){
             resendCode.setVisibility(View.VISIBLE);
-            resendCode.setBackgroundColor(Color.parseColor("#ff0000"));
 
             resendCode.setOnClickListener(new View.OnClickListener() {
                 @Override

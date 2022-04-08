@@ -1,5 +1,6 @@
-package com.example.distractme.ui.distractions;
+package com.example.distractme.ui.checkin;
 
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.example.distractme.MainActivity;
 import com.example.distractme.R;
 import com.example.distractme.ui.breathing.BreatheInActivity;
 import com.example.distractme.ui.drawing.DrawingActivity;
@@ -25,36 +23,91 @@ import com.example.distractme.ui.oddoneout.FindTheDogActivity;
 import com.example.distractme.ui.youtube.YoutubeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class DistractionsFragment extends Fragment {
 
-    private DistractionsViewModel distractionsViewModel;
+public class MeasureDistractionFragment extends Fragment {
     BottomNavigationView navView;
-    Boolean youtube = true, breathing = true, grounding = true, drawing = true, oddoneout = true, gosomewhere = true, comeFromMeasure = true, switched;
-    Button btn_youtube, btn_54321, btn_breathing, btn_draw, btn_oddoneout, btn_somewhere;
+    Boolean youtube, breathing, grounding, drawing, oddoneout, gosomewhere, comeFromMeasure = true, clickedback, switched;
+    Button btn_youtube, btn_54321, btn_breathing, btn_draw, btn_oddoneout, btn_somewhere, btn_back, btn_checkin;
     ImageView ivYoutube, iv54321, ivBreathing, ivDraw, ivOddoneout, ivSomewhere;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        distractionsViewModel =
-                ViewModelProviders.of(this).get(DistractionsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_distractions, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        /** Inflating the layout for this fragment **/
+        View root = inflater.inflate(R.layout.fragment_measure_distraction, container, false);
+
+        btn_checkin = (Button) getActivity().findViewById(R.id.predict_button);
+        btn_back = (Button) root.findViewById(R.id.btn_back);
         btn_youtube = (Button) root.findViewById(R.id.btn_youtube);
+        ivYoutube = (ImageView) root.findViewById(R.id.ivYoutube);
+        btn_54321 = (Button) root.findViewById(R.id.btn_54321);
+        iv54321 = (ImageView) root.findViewById(R.id.ivSenses);
+        btn_breathing = (Button) root.findViewById(R.id.btn_breathing);
+        ivBreathing = (ImageView) root.findViewById(R.id.ivBreathing);
+        btn_draw = (Button) root.findViewById(R.id.btn_draw);
+        ivDraw = (ImageView) root.findViewById(R.id.ivDraw);
+        btn_oddoneout = (Button) root.findViewById(R.id.btn_oddoneout);
+        ivOddoneout = (ImageView) root.findViewById(R.id.ivOddOneOut);
+        btn_somewhere = (Button) root.findViewById(R.id.btn_map);
+        ivSomewhere = (ImageView) root.findViewById(R.id.ivMap);
 
         navView = root.findViewById(R.id.nav_view);
 
-        switched=((MainActivity)getContext()).getSwitched();
+        MeasureEmotionActivity activity = (MeasureEmotionActivity) getActivity();
 
-        switched = false;
+//        youtube = getArguments().getBoolean("youtube");
+//        breathing = getArguments().getBoolean("breathing");
+//        grounding = getArguments().getBoolean("grounding");
+//        drawing = getArguments().getBoolean("drawing");
+//        oddoneout = getArguments().getBoolean("oddoneout");
+//        gosomewhere = getArguments().getBoolean("gosomewhere");
 
-        if(!comeFromMeasure) {
-            youtube = getArguments().getBoolean("youtube");
-            breathing = getArguments().getBoolean("breathing");
-            grounding = getArguments().getBoolean("grounding");
-            drawing = getArguments().getBoolean("drawing");
-            oddoneout = getArguments().getBoolean("oddoneout");
-            gosomewhere = getArguments().getBoolean("gosomewhere");
-        } else {
+        youtube = activity.getYoutube();
+        breathing = activity.getBreathing();
+        grounding = activity.getGrounding();
+        drawing = activity.getDrawing();
+        oddoneout = activity.getOddoneout();
+        gosomewhere = activity.getGoSomewhere();
 
-        }
+        Toast.makeText(
+                getActivity(),
+                "Youtube: " + youtube + "Breathing: " + breathing + "Grounding:" + grounding + "Drawing:" + drawing + "oddoneout:" + oddoneout + "go somewhere:" + gosomewhere,
+                Toast.LENGTH_LONG)
+                .show();
+
+//        btn_54321.setBackgroundColor(Color.parseColor("#0000FF"));
+//        btn_youtube.setBackgroundColor(Color.parseColor("#0000FF"));
+//        btn_breathing.setBackgroundColor(Color.parseColor("#0000FF"));
+//        btn_draw.setBackgroundColor(Color.parseColor("#0000FF"));
+//        btn_oddoneout.setBackgroundColor(Color.parseColor("#0000FF"));
+//        btn_somewhere.setBackgroundColor(Color.parseColor("#0000FF"));
+        CheckRecommended();
+
+        btn_back.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                clickedback = true;
+//                MeasureEmotionActivity activity = new MeasureEmotionActivity();
+//                Bundle bundle = new Bundle();
+//                bundle.putBoolean("clickedback", clickedback);
+//                activity.setArguments(bundle);
+
+                Bundle clickedData = new Bundle();
+                clickedData.putBoolean("clickedback", clickedback);
+                Intent intent = getActivity().getIntent();
+                intent.putExtras(clickedData);
+
+                youtube = false;
+                breathing = false;
+                drawing = false;
+                grounding = false;
+                oddoneout = false;
+                gosomewhere = false;
+                btn_checkin.setVisibility(View.VISIBLE);
+                getFragmentManager().beginTransaction().remove(MeasureDistractionFragment.this).commit();
+            }
+        });
+
 
         btn_youtube.setOnClickListener(new View.OnClickListener()
         {
@@ -67,8 +120,6 @@ public class DistractionsFragment extends Fragment {
 
             }
         });
-
-        ivYoutube = (ImageView) root.findViewById(R.id.ivYoutube);
 
         ivYoutube.setOnClickListener(new View.OnClickListener()
         {
@@ -83,7 +134,6 @@ public class DistractionsFragment extends Fragment {
         });
 
 
-        btn_54321 = (Button) root.findViewById(R.id.btn_54321);
         btn_54321.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -95,7 +145,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        iv54321 = (ImageView) root.findViewById(R.id.ivSenses);
 
         iv54321.setOnClickListener(new View.OnClickListener()
         {
@@ -108,13 +157,12 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        btn_breathing = (Button) root.findViewById(R.id.btn_breathing);
         btn_breathing.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogCustom));
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(getActivity(), R.style.AlertDialogCustom));
                 // set title
                 alertDialogBuilder.setTitle("Breathing Exercise");
                 alertDialogBuilder.setCancelable(false);
@@ -138,14 +186,13 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        ivBreathing = (ImageView) root.findViewById(R.id.ivBreathing);
 
         ivBreathing.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
                 // set title
                 alertDialogBuilder.setTitle("Breathing Exercise");
                 alertDialogBuilder.setCancelable(false);
@@ -169,7 +216,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        btn_draw = (Button) root.findViewById(R.id.btn_draw);
         btn_draw.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -182,7 +228,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        ivDraw = (ImageView) root.findViewById(R.id.ivDraw);
 
         ivDraw.setOnClickListener(new View.OnClickListener()
         {
@@ -196,7 +241,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        btn_oddoneout = (Button) root.findViewById(R.id.btn_oddoneout);
         btn_oddoneout.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -208,7 +252,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        ivOddoneout = (ImageView) root.findViewById(R.id.ivOddOneOut);
         ivOddoneout.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -220,7 +263,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        btn_somewhere = (Button) root.findViewById(R.id.btn_map);
         btn_somewhere.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -232,7 +274,6 @@ public class DistractionsFragment extends Fragment {
             }
         });
 
-        ivSomewhere = (ImageView) root.findViewById(R.id.ivMap);
         ivSomewhere.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -243,7 +284,6 @@ public class DistractionsFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-
         return root;
     }
 
@@ -279,3 +319,5 @@ public class DistractionsFragment extends Fragment {
         }
     }
 }
+
+

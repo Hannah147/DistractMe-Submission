@@ -1401,6 +1401,13 @@
 //
 //
 //}
+
+
+
+
+
+
+
 //package com.example.distractme.ui.tracker;
 //
 //import android.app.Activity;
@@ -1979,32 +1986,119 @@ public class TrackerFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.rvMoods);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final RecyclerViewAdapter.MyClickListener mcl = new RecyclerViewAdapter.MyClickListener() {
-            @Override
-            public void onItemClick(int position) {
-//                        Toast.makeText(getActivity(), "Click Worked!", Toast.LENGTH_LONG).show();
-
-            }
-        };
+//        final RecyclerViewAdapter.MyClickListener mcl = new RecyclerViewAdapter.MyClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+////                        Toast.makeText(getActivity(), "Click Worked!", Toast.LENGTH_LONG).show();
+//
+//            }
+//        };
 
         usersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
 
-        usersDatabase.child(currentUserID).child("TrackedMoods").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    boolean isInterested = (Boolean)postSnapshot.getValue();
-                    if (isInterested){
-                        userMoods.add(postSnapshot.getKey());
+        if(currentMood == "Upset") {
+            usersDatabase.child(currentUserID).child("Upset").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        boolean isInterested = (Boolean)postSnapshot.getValue();
+                        if (isInterested){
+                            userMoods.add(postSnapshot.getKey());
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        } else if(currentMood == "Sad") {
+            usersDatabase.child(currentUserID).child("Sad").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        boolean isInterested = (Boolean)postSnapshot.getValue();
+                        if (isInterested){
+                            userMoods.add(postSnapshot.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        } else if(currentMood == "Neutral") {
+            usersDatabase.child(currentUserID).child("Neutral").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        boolean isInterested = (Boolean)postSnapshot.getValue();
+                        if (isInterested){
+                            userMoods.add(postSnapshot.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        } else if(currentMood == "Happy") {
+            usersDatabase.child(currentUserID).child("Happy").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        boolean isInterested = (Boolean)postSnapshot.getValue();
+                        if (isInterested){
+                            userMoods.add(postSnapshot.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        } else if(currentMood == "Extremely Happy") {
+            usersDatabase.child(currentUserID).child("Extremely Happy").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        boolean isInterested = (Boolean)postSnapshot.getValue();
+                        if (isInterested){
+                            userMoods.add(postSnapshot.getKey());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+//        usersDatabase.child(currentUserID).child("TrackedMoods").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+//                    boolean isInterested = (Boolean)postSnapshot.getValue();
+//                    if (isInterested){
+//                        userMoods.add(postSnapshot.getKey());
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         List<String> moods = new ArrayList<>();
         DatabaseReference moodRef = mDatabase.child(currentUserID).child("TrackedMoods");
@@ -2024,7 +2118,7 @@ public class TrackerFragment extends Fragment {
         };
         moodRef.addListenerForSingleValueEvent(eventListener);
 
-        adapter = new RecyclerViewAdapter(getContext(), moods, ivMoodAdded, allMoodsArray, mcl);
+        adapter = new RecyclerViewAdapter(getContext(), moods, ivMoodAdded, allMoodsArray);
 //                adapter.setClickListener(this);
 
 //        DatabaseReference moodRatingRef = database.getReference().child("users").child(currentUserID);
@@ -2051,7 +2145,7 @@ public class TrackerFragment extends Fragment {
 //            }
 //        });
 
-        recyclerView.setAdapter(adapter);
+//        recyclerView.setAdapter(adapter);
         View rootRecycle = inflater.inflate(R.layout.recyclerview_row, container, false);
 
         ivMoodAdded = (ImageView) rootRecycle.findViewById(R.id.ivMoodAdded);
@@ -2299,37 +2393,48 @@ End of code to make black and white
                     Toast.makeText(getActivity(), "Check length: " + allMoodEvents.size(), Toast.LENGTH_LONG).show();
 //                    Log.d("MOODLMAO", moodEvent);
                     allMoodEvents.add(moodEvent);
-                    
-                    mDatabase.child(currentUserID).child("TrackedMoods").child(moodEvent).setValue(currentMood);
+
+                    if(currentMood == "Upset") {
+                        mDatabase.child(currentUserID).child("Upset").child(moodEvent).setValue(true);
+                    } else if(currentMood == "Sad") {
+                        mDatabase.child(currentUserID).child("Sad").child(moodEvent).setValue(true);
+                    } else if(currentMood == "Neutral") {
+                        mDatabase.child(currentUserID).child("Neutral").child(moodEvent).setValue(true);
+                    } else if(currentMood == "Happy") {
+                        mDatabase.child(currentUserID).child("Happy").child(moodEvent).setValue(true);
+                    } else if(currentMood == "Extremely Happy") {
+                        mDatabase.child(currentUserID).child("Extremely Happy").child(moodEvent).setValue(true);
+                    }
+//                    mDatabase.child(currentUserID).child("TrackedMoods").child(moodEvent).setValue(currentMood);
 
                     moods.add(moodEvent);
 
-                    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance("https://distractme-39056-default-rtdb.europe-west1.firebasedatabase.app/");
-                    DatabaseReference db=firebaseDatabase.getReference().child("users").child(currentUserID);
-
-                    String finalMoodEvent = moodEvent;
-                    db.orderByChild("TrackedMoods").equalTo("Neutral").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()){
-
-                                Log.d("user exits","usere hai");
-                                String value =dataSnapshot.child(finalMoodEvent).getValue().toString();
-
-                                if(value.equals("Neutral") && value != null){
-                                    Log.d("MoodFound",value);
-
-
-                                }else{
-
-                                }
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) { }
-                    });
+//                    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance("https://distractme-39056-default-rtdb.europe-west1.firebasedatabase.app/");
+//                    DatabaseReference db=firebaseDatabase.getReference().child("users").child(currentUserID);
+//
+//                    String finalMoodEvent = moodEvent;
+//                    db.orderByChild("TrackedMoods").equalTo("Neutral").addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if(dataSnapshot.exists()){
+//
+//                                Log.d("user exits","usere hai");
+//                                String value =dataSnapshot.child(finalMoodEvent).getValue().toString();
+//
+//                                if(value.equals("Neutral") && value != null){
+//                                    Log.d("MoodFound",value);
+//
+//
+//                                }else{
+//
+//                                }
+//                            }
+//
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) { }
+//                    });
 
 
                     adapter.notifyDataSetChanged();

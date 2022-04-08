@@ -24,9 +24,9 @@
     tools:layout="@layout/fragment_tracker" />
 
     <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.distractme.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/navigation_others"
+        android:name="com.example.distractme.ui.other_resources.OthersFragment"
+        android:label="@string/title_others"
+        tools:layout="@layout/fragment_others" />
 
 </navigation>

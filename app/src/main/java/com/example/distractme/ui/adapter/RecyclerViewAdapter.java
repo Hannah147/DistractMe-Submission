@@ -1,156 +1,3 @@
-//package com.example.distractme.ui.adapter;
-//
-//import android.content.Context;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.example.distractme.R;
-//
-//import java.util.List;
-//
-//public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-//
-//    private List<String> mData;
-//    private List<Integer> mDataImg;
-//    private ImageView mMoodAddedImage;
-//    private String mMoodAdded;
-//    private LayoutInflater mInflater;
-//    private ItemClickListener mClickListener;
-//
-//    // data is passed into the constructor
-//    public RecyclerViewAdapter(Context context, List<String> data, ImageView moodAddedImage, List<Integer> dataImg) {
-//        this.mInflater = LayoutInflater.from(context);
-//        this.mData = data;
-//        this.mMoodAddedImage = moodAddedImage;
-////        this.mMoodAdded = moodAdded;
-//        this.mDataImg = dataImg;
-//    }
-//
-//    // inflates the row layout from xml when needed
-//    @Override
-//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
-//        return new ViewHolder(view);
-//    }
-//
-//    // binds the data to the TextView in each row
-//    @Override
-//    public void onBindViewHolder(ViewHolder holder, int position) {
-//        String mood = mData.get(position);
-////        ImageView moodImage = mMoodAddedImage.get(position);
-//        holder.myTextView.setText(mood);
-//        Integer moodImg = mDataImg.get(position);
-//
-//        switch(moodImg) {
-//            case 1:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
-//                holder.myImageView.setImageResource(R.drawable.upset_face);
-//                break;
-//            case 2:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
-//                holder.myImageView.setImageResource(R.drawable.sad_face);
-//                break;
-//            case 3:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
-//                holder.myImageView.setImageResource(R.drawable.neutral_face);
-//                break;
-//            case 4:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
-//                holder.myImageView.setImageResource(R.drawable.happy_face);
-//                break;
-//            case 5:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
-//                holder.myImageView.setImageResource(R.drawable.extremely_happy_face);
-//                break;
-//        }
-//    }
-//
-//    // total number of rows
-//    @Override
-//    public int getItemCount() {
-//        return mData.size();
-//    }
-//
-//
-//    // stores and recycles views as they are scrolled off screen
-//    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//        TextView myTextView;
-//        ImageView myImageView;
-//
-//        ViewHolder(View itemView) {
-//            super(itemView);
-//            myTextView = itemView.findViewById(R.id.tvMood);
-//            myImageView = itemView.findViewById(R.id.ivMoodAdded);
-//            itemView.setOnClickListener(this);
-//
-////            mMoodAddedImage.setImageResource(R.drawable.neutral_face);
-////
-////            switch(mMoodAdded) {
-////                case "Upset":
-//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
-////                    myImageView.setImageResource(R.drawable.upset_face);
-////                    break;
-////                case "Sad":
-//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
-////                    myImageView.setImageResource(R.drawable.sad_face);
-////                    break;
-////                case "Neutral":
-//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
-////                    myImageView.setImageResource(R.drawable.neutral_face);
-////                    break;
-////                case "Happy":
-//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
-////                    myImageView.setImageResource(R.drawable.happy_face);
-////                    break;
-////                case "Extremely Happy":
-//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
-////                    myImageView.setImageResource(R.drawable.extremely_happy_face);
-////                    break;
-////            }
-//
-//        }
-//
-//        @Override
-//        public void onClick(View view) {
-//            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-//        }
-//    }
-//
-//    // convenience method for getting data at click position
-//    public String getItem(int id) {
-//        return mData.get(id);
-//    }
-//
-//    // allows clicks events to be caught
-//    public void setClickListener(ItemClickListener itemClickListener) {
-//        this.mClickListener = (ItemClickListener) itemClickListener;
-//    }
-//
-//    // parent activity will implement this method to respond to click events
-//    public interface ItemClickListener {
-//        void onItemClick(View view, int position);
-//    }
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package com.example.distractme.ui.adapter;
 
 import android.content.Context;
@@ -173,32 +20,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ImageView mMoodAddedImage;
     private String mMoodAdded;
     private LayoutInflater mInflater;
-    //    private ItemClickListener mClickListener;
-    private final MyClickListener mMyClickListener;
+    private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public RecyclerViewAdapter(Context context, List<String> data, ImageView moodAddedImage, List<Integer> dataImg, MyClickListener myClickListener) {
+    public RecyclerViewAdapter(Context context, List<String> data, ImageView moodAddedImage, List<Integer> dataImg) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.mMoodAddedImage = moodAddedImage;
 //        this.mMoodAdded = moodAdded;
-//        this.mDataImg = dataImg;
-        mMyClickListener = myClickListener;
+        this.mDataImg = dataImg;
     }
 
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
-        ViewHolder view2 = new ViewHolder(view);
-        view2.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // get the position of this Vh
-                int position = view2.getAdapterPosition();
-                if (mMyClickListener != null) mMyClickListener.onItemClick(position);
-            }
-        });
         return new ViewHolder(view);
     }
 
@@ -208,30 +44,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String mood = mData.get(position);
 //        ImageView moodImage = mMoodAddedImage.get(position);
         holder.myTextView.setText(mood);
-//        Integer moodImg = mDataImg.get(position);
+        Integer moodImg = mDataImg.get(position);
 
-//        switch (moodImg) {
-//            case 1:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
-//                holder.myImageView.setImageResource(R.drawable.upset_face);
-//                break;
-//            case 2:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
-//                holder.myImageView.setImageResource(R.drawable.sad_face);
-//                break;
-//            case 3:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
-//                holder.myImageView.setImageResource(R.drawable.neutral_face);
-//                break;
-//            case 4:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
-//                holder.myImageView.setImageResource(R.drawable.happy_face);
-//                break;
-//            case 5:
-////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
-//                holder.myImageView.setImageResource(R.drawable.extremely_happy_face);
-//                break;
-//        }
+        switch(moodImg) {
+            case 1:
+//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
+                holder.myImageView.setImageResource(R.drawable.upset_face);
+                break;
+            case 2:
+//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
+                holder.myImageView.setImageResource(R.drawable.sad_face);
+                break;
+            case 3:
+//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
+                holder.myImageView.setImageResource(R.drawable.neutral_face);
+                break;
+            case 4:
+//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
+                holder.myImageView.setImageResource(R.drawable.happy_face);
+                break;
+            case 5:
+//                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
+                holder.myImageView.setImageResource(R.drawable.extremely_happy_face);
+                break;
+        }
     }
 
     // total number of rows
@@ -242,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
         ImageView myImageView;
 
@@ -250,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             myTextView = itemView.findViewById(R.id.tvMood);
             myImageView = itemView.findViewById(R.id.ivMoodAdded);
-//            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
 //            mMoodAddedImage.setImageResource(R.drawable.neutral_face);
 //
@@ -276,31 +112,222 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                    myImageView.setImageResource(R.drawable.extremely_happy_face);
 //                    break;
 //            }
+
         }
 
-//        @Override
-//        public void onClick(View view) {
-//            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-//        }
-
+        @Override
+        public void onClick(View view) {
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+        }
     }
 
-    public interface MyClickListener {
-        void onItemClick(int position);
-    }
     // convenience method for getting data at click position
     public String getItem(int id) {
         return mData.get(id);
     }
+
+    // allows clicks events to be caught
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = (ItemClickListener) itemClickListener;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
 }
 
-//    // allows clicks events to be caught
-//// allows clicks events to be caught
-//    public void setClickListener(ItemClickListener itemClickListener) {
-//        this.mClickListener = itemClickListener;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//package com.example.distractme.ui.adapter;
+//
+//import static com.example.distractme.ui.authentication.EditProfile.TAG;
+//
+//import android.content.Context;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.ImageView;
+//import android.widget.TextView;
+//
+//import androidx.annotation.NonNull;
+//import androidx.recyclerview.widget.RecyclerView;
+//
+//import com.example.distractme.R;
+//import com.google.firebase.database.DataSnapshot;
+//import com.google.firebase.database.DatabaseError;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.Query;
+//import com.google.firebase.database.ValueEventListener;
+//
+//import java.util.List;
+//
+//public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+//
+//    private List<String> mData;
+//    private List<Integer> mDataImg;
+//    private ImageView mMoodAddedImage;
+//    private String mMoodAdded, mCurrentMood;
+//    private LayoutInflater mInflater;
+//    //    private ItemClickListener mClickListener;
+//    private final MyClickListener mMyClickListener;
+//
+//    // data is passed into the constructor
+//    public RecyclerViewAdapter(Context context, List<String> data, ImageView moodAddedImage, String currentMood, MyClickListener myClickListener) {
+//        this.mInflater = LayoutInflater.from(context);
+//        this.mData = data;
+////        this.mMoodAddedImage = moodAddedImage;
+////        this.mMoodAdded = moodAdded;
+//        this.mCurrentMood = currentMood;
+//        mMyClickListener = myClickListener;
 //    }
 //
-//    // parent activity will implement this method to respond to click events
-//    public interface ItemClickListener {
-//        void onItemClick(View view, int position);
-//    }}
+//    // inflates the row layout from xml when needed
+//    @Override
+//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
+//        ViewHolder view2 = new ViewHolder(view);
+//        view2.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // get the position of this Vh
+//                int position = view2.getAdapterPosition();
+//                if (mMyClickListener != null) mMyClickListener.onItemClick(position);
+//            }
+//        });
+//        return new ViewHolder(view);
+//    }
+//
+//    // binds the data to the TextView in each row
+//    @Override
+//    public void onBindViewHolder(ViewHolder holder, int position) {
+//        String mood = mData.get(position);
+////        ImageView moodImage = mMoodAddedImage.get(position);
+//        holder.myTextView.setText(mood);
+////        Integer moodImg = mDataImg.get(position);
+//
+//        DatabaseReference rootRef = FirebaseDatabase.getInstance("https://distractme-39056-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users");
+//        Query query = rootRef.orderByChild(mCurrentMood).equalTo(true);
+//        ValueEventListener valueEventListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    String key = ds.getKey();
+//                    Log.d(TAG, key);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Log.d(TAG, databaseError.getMessage());
+//            }
+//        };
+//        query.addListenerForSingleValueEvent(valueEventListener);
+//        switch (mCurrentMood) {
+//            case "Upset":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
+//                holder.myImageView.setImageResource(R.drawable.upset_face);
+//                break;
+//            case "Sad":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
+//                holder.myImageView.setImageResource(R.drawable.sad_face);
+//                break;
+//            case "Neutral":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
+//                holder.myImageView.setImageResource(R.drawable.neutral_face);
+//                break;
+//            case "Happy":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
+//                holder.myImageView.setImageResource(R.drawable.happy_face);
+//                break;
+//            case "Extremely Happy":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
+//                holder.myImageView.setImageResource(R.drawable.extremely_happy_face);
+//                break;
+//        }
+//    }
+//
+//    // total number of rows
+//    @Override
+//    public int getItemCount() {
+//        return mData.size();
+//    }
+//
+//
+//    // stores and recycles views as they are scrolled off screen
+//    public class ViewHolder extends RecyclerView.ViewHolder {
+//        TextView myTextView;
+//        ImageView myImageView;
+//
+//        ViewHolder(View itemView) {
+//            super(itemView);
+//            myTextView = itemView.findViewById(R.id.tvMood);
+//            myImageView = itemView.findViewById(R.id.ivMoodAdded);
+////            itemView.setOnClickListener(this);
+//
+////            mMoodAddedImage.setImageResource(R.drawable.neutral_face);
+////
+////            switch(mMoodAdded) {
+////                case "Upset":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.upset_face));
+////                    myImageView.setImageResource(R.drawable.upset_face);
+////                    break;
+////                case "Sad":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.sad_face));
+////                    myImageView.setImageResource(R.drawable.sad_face);
+////                    break;
+////                case "Neutral":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.neutral_face));
+////                    myImageView.setImageResource(R.drawable.neutral_face);
+////                    break;
+////                case "Happy":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.happy_face));
+////                    myImageView.setImageResource(R.drawable.happy_face);
+////                    break;
+////                case "Extremely Happy":
+//////                        ivMoodAdded.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.extremely_happy_face));
+////                    myImageView.setImageResource(R.drawable.extremely_happy_face);
+////                    break;
+////            }
+//        }
+//
+////        @Override
+////        public void onClick(View view) {
+////            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+////        }
+//
+//    }
+//
+//    public interface MyClickListener {
+//        void onItemClick(int position);
+//    }
+//    // convenience method for getting data at click position
+//    public String getItem(int id) {
+//        return mData.get(id);
+//    }
+//}
+//
+////    // allows clicks events to be caught
+////// allows clicks events to be caught
+////    public void setClickListener(ItemClickListener itemClickListener) {
+////        this.mClickListener = itemClickListener;
+////    }
+////
+////    // parent activity will implement this method to respond to click events
+////    public interface ItemClickListener {
+////        void onItemClick(View view, int position);
+////    }}

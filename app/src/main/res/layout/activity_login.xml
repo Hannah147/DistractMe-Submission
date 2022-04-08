@@ -141,7 +141,6 @@
         android:layout_width="170dp"
         android:layout_height="46dp"
         android:background="@null"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_white_24"
         android:onClick="proceed"
         android:text="@string/guest"
         android:textAllCaps="false"

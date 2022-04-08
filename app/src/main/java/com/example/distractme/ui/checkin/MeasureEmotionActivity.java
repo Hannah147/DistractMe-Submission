@@ -1,6 +1,11 @@
 package com.example.distractme.ui.checkin;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +16,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.distractme.R;
+import com.example.distractme.ui.emergencyhelplines.EmergencyHelplineActivity;
 import com.google.android.gms.tasks.Continuation;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions;
 import com.google.firebase.ml.common.modeldownload.FirebaseModelManager;
 import com.google.firebase.ml.custom.FirebaseCustomRemoteModel;
@@ -25,15 +35,29 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+//import androidx.fragment.app.Fragment;
+//import androidx.fragment.app.FragmentTransaction;
+
 public class MeasureEmotionActivity extends AppCompatActivity {
     private TextView resultTextView;
     private EditText inputEditText;
     private ExecutorService executorService;
     private ScrollView scrollView;
     private Button predictButton;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    private String currentUserID;
+    FirebaseDatabase database;
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
     float positiveResult;
     String moodResult, answerCheck;
+
+    Boolean youtube, breathing, grounding, drawing, oddoneout, gosomewhere, emergency;
+    Boolean switched = true;
+
+    Button btn_checkin;
 
     List<String> dangerousWords = new ArrayList<String>();
 
@@ -48,6 +72,8 @@ public class MeasureEmotionActivity extends AppCompatActivity {
         dangerousWords.add("kill myself");
         dangerousWords.add("suicidal");
 
+        btn_checkin = findViewById(R.id.predict_button);
+
         executorService = Executors.newSingleThreadExecutor();
         resultTextView = findViewById(R.id.result_text_view);
         inputEditText = findViewById(R.id.input_text);
@@ -58,10 +84,66 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                 (View v) -> {
                     classify(inputEditText.getText().toString());
                     answerCheck = inputEditText.getText().toString();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putBoolean("youtube", youtube);
+//                    bundle.putBoolean("breathing", breathing);
+//                    bundle.putBoolean("grounding", grounding);
+//                    bundle.putBoolean("drawing", drawing);
+//                    bundle.putBoolean("oddoneout", oddoneout);
+//                    bundle.putBoolean("gosomewhere", gosomewhere);
+
+//// Set Fragmentclass Arguments
+//                    DistractionsFragment fragobj = new DistractionsFragment();
+//                    fragobj.setArguments(bundle);
+
+//                    Intent i = new Intent(MeasureEmotionActivity.this, MainActivity.class);
+//
+////                    String fragment = "distractions";//
+////                    i.putExtra("fragment", fragment);
+//                    i.putExtra("switched", switched);
+//
+//                    startActivity(i);
+
+
+//                    HomeFragment fragment = new HomeFragment();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putBoolean("switched", switched);
+//                    fragment.setArguments(bundle);
+
                 });
 
         // TODO 3: Call the method to download TFLite model
         downloadModel("sentiment_analysis");
+
+        database = FirebaseDatabase.getInstance("https://distractme-39056-default-rtdb.europe-west1.firebasedatabase.app/");
+        mDatabase = database.getReference().child("users");
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+        if(mAuth != null) {
+            currentUserID = user.getUid();
+        } else{
+            Log.e("User", "not found...");
+        }
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new androidx.fragment.app.FragmentManager.OnBackStackChangedListener()
+        {
+            public void onBackStackChanged()
+            {
+                Bundle clickedData = getIntent().getExtras();
+                if (clickedData != null)
+                {
+                    Boolean clickedback = clickedData.getBoolean("clickedback");
+                    Toast.makeText(MeasureEmotionActivity.this, "Bundle is there YAYYY", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (clickedData == null)
+                {
+                    Toast.makeText(MeasureEmotionActivity.this, "Bundle is null", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
 
     /** Send input text to TextClassificationClient and get the classify messages. */
@@ -72,14 +154,25 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                     List<Category> results = textClassifier.classify(text);
 
                     // TODO 8: Convert the result to a human-readable text
-                    String textToShow = "Input: " + text + "\nOutput:\n";
+                    // old method -------------------------------------------------------------------------
+//                    String textToShow = "Input: " + text + "\nOutput:\n";
+//                    for (int i = 0; i < results.size(); i++) {
+//                        Category result = results.get(i);
+//                        textToShow +=
+//                                String.format("    %s: %s\n", result.getLabel(), result.getScore());
+//                        positiveResult = result.getScore();
+//                    }
+//                    textToShow += "---------\n";
+
+                    // end of old method ------------------------------------------------------------------
+
+                    String textToShow = "Input: " + text + "\n";
                     for (int i = 0; i < results.size(); i++) {
-                        Category result = results.get(i);
-                        textToShow +=
-                                String.format("    %s: %s\n", result.getLabel(), result.getScore());
+                        Category result = results.get(i);;
                         positiveResult = result.getScore();
                     }
-                    textToShow += "---------\n";
+
+                    mDatabase.child(currentUserID).child("WordAnalysis").child(text).setValue(true);
 
 
                     // Show classification result on screen
@@ -140,44 +233,89 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                         }
                     }
                     if(found){
-                        Toast.makeText(
-                                this,
-                                "DANGER",
-                                Toast.LENGTH_LONG)
-                                .show();
+                        emergency = true;
+
+                        if(emergency) {
+                            Toast.makeText(
+                                    this,
+                                    "DANGER",
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent();
+                                    intent.setClass(MeasureEmotionActivity.this, EmergencyHelplineActivity.class);
+                                    intent.putExtra("emergency", emergency);
+                                    startActivity(intent);
+
+                                }
+                            }, 4000);
+                        }
                     } else {
 
                         if (positiveResult == 1) {
                             Toast.makeText(
                                     this,
-                                    "I'm glad you're having such a good day!",
+                                    "I'm glad you're having such a good day!" + positiveResult,
                                     Toast.LENGTH_LONG)
                                     .show();
-
+                            youtube = true;
+                            breathing = false;
+                            grounding = false;
+                            drawing = true;
+                            oddoneout = false;
+                            gosomewhere = true;
                         } else if (positiveResult < 0.1) {
                             Toast.makeText(
                                     this,
-                                    "I'm sorry you're having such a bad day. How can we help?",
+                                    "I'm sorry you're having such a bad day. How can we help?" + positiveResult,
                                     Toast.LENGTH_LONG)
                                     .show();
+                            youtube = true;
+                            breathing = true;
+                            grounding = true;
+                            drawing = true;
+                            oddoneout = true;
+                            gosomewhere = true;
+
                         } else if (positiveResult < 0.4 && positiveResult > 0.1) {
                             Toast.makeText(
                                     this,
-                                    "You seem to be having a difficult time. How can we help?",
+                                    "You seem to be having a difficult time. How can we help?" + positiveResult,
                                     Toast.LENGTH_LONG)
                                     .show();
+
+                            youtube = false;
+                            breathing = true;
+                            grounding = true;
+                            drawing = true;
+                            oddoneout = true;
+                            gosomewhere = true;
                         } else if (positiveResult > 0.4 && positiveResult < 0.6) {
                             Toast.makeText(
                                     this,
-                                    "Your day seems to be going alright. How can we help?",
+                                    "Your day seems to be going alright. How can we help?" + positiveResult,
                                     Toast.LENGTH_LONG)
                                     .show();
+                            youtube = true;
+                            breathing = true;
+                            grounding = false;
+                            drawing = true;
+                            oddoneout = false;
+                            gosomewhere = true;
                         } else if (positiveResult > 0.6 && positiveResult < 1) {
                             Toast.makeText(
                                     this,
-                                    "You seem to be having a good day! How can we help?",
+                                    "You seem to be having a good day! How can we help?" + positiveResult,
                                     Toast.LENGTH_LONG)
                                     .show();
+                            youtube = true;
+                            breathing = false;
+                            grounding = false;
+                            drawing = true;
+                            oddoneout = false;
+                            gosomewhere = true;
                         }
 
                     }
@@ -220,5 +358,69 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                             .show();
                     predictButton.setEnabled(false);
                 });
+    }
+
+    public void goToDistractions(View view) {
+//        Intent intent = new Intent(MeasureEmotionActivity.this, MainActivity.class);
+//        intent.putExtra("switched", switched);
+//        startActivity(intent);
+
+
+        // ----------------------- code that did work -------------------------------
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        MeasureDistractionFragment hello = new MeasureDistractionFragment();
+        fragmentTransaction.add(R.id.fragment_container, hello, "Distraction");
+        fragmentTransaction.commit();
+        btn_checkin.setVisibility(View.INVISIBLE);
+
+        // -------------------
+        // ---- code that did work ------------------------------
+
+//        Fragment fragment = MeasureDistractionFragment.newInstance();
+//
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//
+//        transaction.replace(R.id.container_layout, fragment).commit();        btn_checkin.setVisibility(View.INVISIBLE);
+
+
+        //                    HomeFragment fragment = new HomeFragment();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putBoolean("switched", switched);
+//                    fragment.setArguments(bundle);
+
+//        MeasureDistractionFragment fragment = new MeasureDistractionFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putBoolean("youtube", youtube);
+//        bundle.putBoolean("breathing", breathing);
+//        bundle.putBoolean("grounding", grounding);
+//        bundle.putBoolean("drawing", drawing);
+//        bundle.putBoolean("oddoneout", oddoneout);
+//        bundle.putBoolean("gosomewhere", gosomewhere);
+//        fragment.setArguments(bundle);
+    }
+
+    public Boolean getYoutube() {
+        return youtube;
+    }
+
+    public Boolean getBreathing() {
+        return breathing;
+    }
+
+    public Boolean getGrounding() {
+        return grounding;
+    }
+
+    public Boolean getDrawing() {
+        return drawing;
+    }
+
+    public Boolean getOddoneout() {
+        return oddoneout;
+    }
+
+    public Boolean getGoSomewhere() {
+        return gosomewhere;
     }
 }

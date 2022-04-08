@@ -1,22 +1,31 @@
 package com.example.distractme.ui.home;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.distractme.MainActivity;
 import com.example.distractme.R;
+import com.example.distractme.ui.checkin.MeasureEmotionActivity;
+import com.example.distractme.ui.distractions.DistractionsFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +36,8 @@ public class HomeFragment extends Fragment {
     String currentDay, currentMonth, currentDate;
     ListView lvInfo;
     ArrayList<String> information;
+
+    Boolean switched = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +54,8 @@ public class HomeFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
+
+        Toast.makeText(getContext(), "Working? :", Toast.LENGTH_LONG).show();
 
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
@@ -62,6 +75,27 @@ public class HomeFragment extends Fragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1, information);
         lvInfo.setAdapter(arrayAdapter);
 
+        lvInfo.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
         lvInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,7 +162,90 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        Button btn_TellUs = (Button) root.findViewById(R.id.btnTellUs);
+
+        btn_TellUs.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(getContext(), R.style.AlertDialogCustom));
+                // set title
+                alertDialogBuilder.setTitle("Word Analysis");
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("By answering how you are, we can analyse your response, and suggest distractions. Are you alright with this?")
+                        .setCancelable(false)
+                        .setPositiveButton( "Yes",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                Intent intent = new Intent();
+                                intent.setClass(getActivity(), MeasureEmotionActivity.class);
+                                getActivity().startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No, I'll choose myself.",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                                ft.replace(R.id.nav_host_fragment, new DistractionsFragment(), "NewFragmentTag");
+                                ft.addToBackStack(null);
+                                ft.commit();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+            }
+        });
+
+        Button btn_StraightDistractions = (Button) root.findViewById(R.id.btnStraightDistractions);
+
+        btn_StraightDistractions.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+                ft.replace(R.id.nav_host_fragment, new DistractionsFragment(), "NewFragmentTag");
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+        switched=((MainActivity)getContext()).getSwitched();
+        if(switched) {
+            final FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.replace(R.id.nav_host_fragment, new DistractionsFragment(), "NewFragmentTag");
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+
+        switched = false;
         return root;
+    }
+
+    public void onActivityCreated (Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            Boolean i = bundle.getBoolean("switched", switched);
+            String checkSwitched = switched.toString();
+            Toast.makeText(getContext(), "Switched Status : " + checkSwitched, Toast.LENGTH_LONG).show();
+
+        }
+
+        if (switched == true) {
+            Fragment newFragment = new DistractionsFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+            transaction.replace(R.id.fragment_container_view_tag, newFragment);
+            transaction.addToBackStack(null);
+
+            transaction.commit();
+        }
+
     }
 
     public void getInfo()

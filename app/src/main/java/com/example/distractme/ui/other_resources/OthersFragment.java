@@ -1,4 +1,4 @@
-package com.example.distractme.ui.profile;
+package com.example.distractme.ui.other_resources;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,13 +16,15 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.distractme.R;
 import com.example.distractme.ui.authentication.GuestViewProfile;
 import com.example.distractme.ui.authentication.ViewProfile;
+import com.example.distractme.ui.emergencyhelplines.EmergencyHelplineActivity;
 import com.example.distractme.ui.login.LoginActivity;
+import com.example.distractme.ui.mentalhealthtest.OnlineMentalHealthTest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
-public class ProfileFragment extends Fragment {
+public class OthersFragment extends Fragment {
 
     private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView fullName,email,verifyMsg;
@@ -35,7 +36,7 @@ public class ProfileFragment extends Fragment {
     FirebaseUser user;
     ImageView profileImage;
     StorageReference storageReference;
-    private ProfileViewModel profileViewModel;
+    private OthersViewModel profileViewModel;
     Boolean guestLogin, guestProfile;
     private FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -43,8 +44,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         profileViewModel =
-                ViewModelProviders.of(this).get(ProfileViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+                ViewModelProviders.of(this).get(OthersViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_others, container, false);
 
 //        guestLogin = false;
 
@@ -117,7 +118,9 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(getContext(), "Clicked on Test Links", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), OnlineMentalHealthTest.class);
+                getActivity().startActivity(intent);
             }
         });
 
@@ -128,7 +131,9 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(getContext(), "Clicked on Emergency Helplines", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), EmergencyHelplineActivity.class);
+                getActivity().startActivity(intent);
             }
         });
 

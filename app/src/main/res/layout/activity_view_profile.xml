@@ -50,6 +50,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:text="Full Name"
+        android:background="#ebebf3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/iv_person"
@@ -65,6 +66,7 @@
         android:text="Your Name"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:background="#ebebf3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_person"
         app:layout_constraintTop_toBottomOf="@+id/tv_fullName" />
@@ -86,6 +88,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:text="Email"
+        android:background="#ebebf3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_email"
         app:layout_constraintTop_toTopOf="@+id/iv_email" />
@@ -100,6 +103,7 @@
         android:text="Your Email Address"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:background="#ebebf3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_email"
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />
@@ -119,7 +123,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.557" />
+        app:layout_constraintVertical_bias="0.578" />
 
     <Button
         android:id="@+id/changeProfile"
@@ -128,13 +132,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="#cec4de"
-        android:text="Change Profile"
+        android:text="Edit Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.705" />
 
     <Button
         android:id="@+id/resetPassword"
@@ -149,7 +153,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
+        app:layout_constraintVertical_bias="0.833" />
 
     <Button
         android:id="@+id/btn_logout"
@@ -165,6 +169,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.961" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
