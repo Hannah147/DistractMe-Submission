@@ -5,6 +5,36 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorBackground">#5a3e7d</color>
 <!--    <color name="colorBackground2">#d6b5ff</color>-->
+    <color name="grey">#ECEBF4</color>
+    <color name="dark_grey_font">#78818F</color>
+    <color name="light_grey">#ecebf3</color>
+
+    <color name="logo_blue">#c7d9ec</color>
+    <color name="logo_purple">#cec4de</color>
+    <color name="logo_green">#d3e1cc</color>
+    <color name="logo_yellow">#EBE6A2</color>
+
+    <color name="logo_blue_transparent">#99A2C8E8</color>
+    <color name="logo_blue_transparent_2">#99b3dcff</color>
+    <color name="logo_purple_transparent">#99A893C2</color>
+    <color name="logo_purple_transparent_2">#99ccb2ed</color>
+    <color name="logo_green_transparent">#99ADD19D</color>
+    <color name="logo_green_transparent_2">#99c4edb2</color>
+    <color name="logo_yellow_transparent">#99EBE6A2</color>
+    <color name="logo_yellow_transparent_2">#99e8df5f</color>
+
+
     <color name="colorBackground2">#A2C8E8</color>
+    <color name="beach_1">#A6b1b0b9</color>
+    <color name="beach_2">#A63e3a3e</color>
+    <color name="beach_3">#A6676974</color>
+    <color name="beach_4">#A6485159</color>
+    <color name="beach_5">#A6748496</color>
+    <color name="beach_6">#A65c5050</color>
+    <color name="beach_7">#A6f4ebe1</color>
+    <color name="beach_8">#A6eacfc8</color>
+    <color name="beach_9">#A68d7d82</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
 
 </resources>

@@ -304,7 +304,6 @@ public class EmergencyHelplineActivity extends AppCompatActivity {
         Integer fragment_load;
         fragment_load = 4;
         Intent i = new Intent(EmergencyHelplineActivity.this, MainActivity.class);
-        i.putExtra("fragment_load", fragment_load);
         startActivity(i);
 // Now start your activity
     }

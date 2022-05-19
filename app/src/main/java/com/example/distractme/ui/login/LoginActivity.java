@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
@@ -19,12 +20,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.distractme.MainActivity;
 import com.example.distractme.R;
 import com.example.distractme.ui.authentication.Register;
+import com.example.distractme.ui.consent.ConsentActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +46,16 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     Boolean guestLogin;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserID;
+    FirebaseDatabase database;
+    FirebaseFirestore mStore;
+    StorageReference storageReference;
+    private DatabaseReference usersDatabase;
+    Boolean consent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +68,33 @@ public class LoginActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn = findViewById(R.id.btn_login);
         forgotTextLink = findViewById(R.id.forgotPassword);
+
+//        FirebaseApp.initializeApp(this);
+//
+//        database = FirebaseDatabase.getInstance("https://distractme-39056-default-rtdb.europe-west1.firebasedatabase.app/");
+//        mDatabase = database.getReference().child("users");
+//
+//        mAuth = FirebaseAuth.getInstance();
+//        mStore = FirebaseFirestore.getInstance();
+//        storageReference = FirebaseStorage.getInstance().getReference();
+//        currentUserID = mAuth.getCurrentUser().getUid();
+//        if(mAuth != null) {
+//            currentUserID = user.getUid();
+//        } else{
+//            Log.e("User", "not found...");
+//        }
+//        usersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+//
+////        getConsent();
+////        consent = false;
+////        if(!consent) {
+//////            FragmentManager fragmentManager = getFragmentManager();
+//////            android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//////            ConsentFragment fragmentconsent = new ConsentFragment();
+//////            fragmentTransaction.add(R.id.fragment_consent, fragmentconsent, "Consent");
+//////            fragmentTransaction.commit();
+////        }
+
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,10 +128,17 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             guestLogin = false;
-                            Intent intent = new Intent();
-                            intent.putExtra("guestLogin", guestLogin);
-                            intent.setClass(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+//                            if(consent) {
+                                Intent intent = new Intent();
+                                intent.putExtra("guestLogin", guestLogin);
+                                intent.setClass(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+//                            }
+//                            else {
+//                                Intent intent = new Intent();
+//                                intent.setClass(getApplicationContext(), ConsentActivity.class);
+//                                startActivity(intent);
+//                            }
                         }else {
                             Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -177,6 +233,22 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+//    public Boolean getConsent() {
+//        mDatabase.child(currentUserID).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                consent = (Boolean) snapshot.child("CONSENT").getValue(consent);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                throw error.toException(); // never ignore errors
+//            }
+//        });
+//
+//        return this.consent;
+//    }
 
     public void toRegister(View view) {
         Intent intent = new Intent();

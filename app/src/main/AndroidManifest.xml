@@ -17,13 +17,20 @@
     </queries>
 
     <application
+        android:name=".ui.controller.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.consent.ConsentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.quotes.QuoteActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.emergencyhelplines.EmergencyHelplineActivity"
             android:exported="false" />
@@ -39,8 +46,9 @@
         <activity
             android:name=".ui.authentication.GuestViewProfile"
             android:exported="false" />
-        <activity android:name=".fragmentmanager"
-            android:label="FragmentManager"/>
+        <activity
+            android:name=".fragmentmanager"
+            android:label="FragmentManager" />
         <activity android:name=".ui.oddoneout.FindTheDancerActivity" />
         <activity android:name=".ui.oddoneout.FindTheMoonActivity" />
         <activity android:name=".ui.oddoneout.FindTheSkunkActivity" />
@@ -129,6 +137,8 @@
             android:excludeFromRecents="true"
             android:label="@string/title_grounding"
             android:noHistory="true" />
+
+        <service android:name=".ui.services.LocationMonitoringService" />
     </application>
 
 </manifest>

@@ -11,14 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#cec4de"
+            android:layout_height="48dp"
+            android:background="#d4def1"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            android:paddingLeft="10dp"
             android:layout_marginTop="35dp"
             android:onClick="backToOthers"
-            android:text="Emergency Help"
             app:layout_constraintRight_toLeftOf="@id/horizontalScrollView" />
 
         <HorizontalScrollView
@@ -44,6 +45,7 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp">
 
+<!--            purple-->
             <Button
                 android:id="@+id/btn_EmergencyServices"
                 android:layout_width="wrap_content"
@@ -53,21 +55,23 @@
                 android:onClick="showEmergencyNumbers"
                 android:text="Emergency Help" />
 
+<!--            green-->
             <Button
                 android:id="@+id/btn_TextHelpline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="#d4def1"
+                android:background="#d3e1cc"
                 android:onClick="showTextHelpline"
                 android:text="Text About It - 50808" />
 
+            <!-- blue -->
             <Button
                 android:id="@+id/btn_Samaritans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="#d3e1cc"
+                android:background="#d4def1"
                 android:onClick="showSamaritans"
                 android:text="Samaritans" />
 
@@ -76,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="#d4def1"
+                android:background="#cec4de"
                 android:onClick="showPieta"
                 android:text="Pieta" />
 
@@ -85,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="#cec4de"
+                android:background="#d3e1cc"
                 android:onClick="showChildline"
                 android:text="Childline" />
 
@@ -94,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:background="#d3e1cc"
+                android:background="#d4def1"
                 android:onClick="showAwareHelpline"
                 android:text="Aware Support Line" />
         </LinearLayout>
