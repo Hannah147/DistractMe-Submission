@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
         android:onClick="startActivity"
-        android:text="BACK" />
+        android:drawableLeft="@drawable/ic_baseline_home_black_24"
+        android:text="  HOME" />
 
     <fragment
         android:id="@+id/map"

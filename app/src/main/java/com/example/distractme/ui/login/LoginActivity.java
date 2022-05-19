@@ -42,19 +42,10 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText mEmail,mPassword;
     Button mLoginBtn;
-    TextView mCreateBtn,forgotTextLink;
+    TextView forgotTextLink;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     Boolean guestLogin;
-    private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
-    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private String currentUserID;
-    FirebaseDatabase database;
-    FirebaseFirestore mStore;
-    StorageReference storageReference;
-    private DatabaseReference usersDatabase;
-    Boolean consent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,32 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn = findViewById(R.id.btn_login);
         forgotTextLink = findViewById(R.id.forgotPassword);
-
-//        FirebaseApp.initializeApp(this);
-//
-//        database = FirebaseDatabase.getInstance("https://distractme-39056-default-rtdb.europe-west1.firebasedatabase.app/");
-//        mDatabase = database.getReference().child("users");
-//
-//        mAuth = FirebaseAuth.getInstance();
-//        mStore = FirebaseFirestore.getInstance();
-//        storageReference = FirebaseStorage.getInstance().getReference();
-//        currentUserID = mAuth.getCurrentUser().getUid();
-//        if(mAuth != null) {
-//            currentUserID = user.getUid();
-//        } else{
-//            Log.e("User", "not found...");
-//        }
-//        usersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-//
-////        getConsent();
-////        consent = false;
-////        if(!consent) {
-//////            FragmentManager fragmentManager = getFragmentManager();
-//////            android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//////            ConsentFragment fragmentconsent = new ConsentFragment();
-//////            fragmentTransaction.add(R.id.fragment_consent, fragmentconsent, "Consent");
-//////            fragmentTransaction.commit();
-////        }
 
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -128,17 +93,10 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             guestLogin = false;
-//                            if(consent) {
                                 Intent intent = new Intent();
                                 intent.putExtra("guestLogin", guestLogin);
                                 intent.setClass(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
-//                            }
-//                            else {
-//                                Intent intent = new Intent();
-//                                intent.setClass(getApplicationContext(), ConsentActivity.class);
-//                                startActivity(intent);
-//                            }
                         }else {
                             Toast.makeText(LoginActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -233,22 +191,6 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
-
-//    public Boolean getConsent() {
-//        mDatabase.child(currentUserID).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                consent = (Boolean) snapshot.child("CONSENT").getValue(consent);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                throw error.toException(); // never ignore errors
-//            }
-//        });
-//
-//        return this.consent;
-//    }
 
     public void toRegister(View view) {
         Intent intent = new Intent();

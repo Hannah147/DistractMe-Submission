@@ -173,12 +173,10 @@ public class FiveThingsSeeActivity extends AppCompatActivity {
             FiveThingsSee.add(third_see);
             FiveThingsSee.add(fourth_see);
             FiveThingsSee.add(fifth_see);
-//        TextView tv_revise;
-//        tv_revise = findViewById(R.id.tv_revise);
-//        tv_revise.setText(first_see);
+
             Intent intentFourThings = new Intent();
             intentFourThings.setClass(FiveThingsSeeActivity.this, FourThingsTouchActivity.class);
-//        Intent reviseFive = new Intent(this, GroundingActivity.class);
+
             intentFourThings.putStringArrayListExtra("FiveThingsSee", FiveThingsSee);
             startActivity(intentFourThings);
         }else if(cb_1st_see.isChecked()== true && cb_2nd_see.isChecked()== true && cb_3rd_see.isChecked()== true && cb_4th_see.isChecked()== true) {

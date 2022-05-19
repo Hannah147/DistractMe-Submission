@@ -18,10 +18,8 @@ import java.util.Collections;
 
 public class GroundingActivity extends AppCompatActivity {
 
-//    TextView tv_5_things, tv_4_things, tv_3_things, tv_2_things, tv_1_thing;
-
     ListView lv_5_things, lv_4_things, lv_3_things, lv_2_things, lv_1_thing;
-//    Intent i1, i2, i3, i4, i5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,19 +44,6 @@ public class GroundingActivity extends AppCompatActivity {
         lv_3_things = findViewById(R.id.lv_3_things);
         lv_2_things = findViewById(R.id.lv_2_things);
         lv_1_thing = findViewById(R.id.lv_1_thing);
-
-//        tv_5_things = findViewById(R.id.tv_5_things);
-//        tv_4_things = findViewById(R.id.tv_4_things);
-//        tv_3_things = findViewById(R.id.tv_3_things);
-//        tv_2_things = findViewById(R.id.tv_2_things);
-//        tv_1_thing = findViewById(R.id.tv_1_thing);
-
-
-//        tv_5_things.setText(FiveThingsSee.get(0) + ", " + FiveThingsSee.get(1) + ", " + FiveThingsSee.get(2) + ", " + FiveThingsSee.get(3) + ", " +FiveThingsSee.get(4));
-//        tv_4_things.setText(FourThingsTouch.get(0) + ", " +FourThingsTouch.get(1) + ", " + FourThingsTouch.get(2) + ", " +FourThingsTouch.get(3));
-//        tv_3_things.setText(ThreeThingsHear.get(0) + ", " +ThreeThingsHear.get(1) + ", " + ThreeThingsHear.get(2));
-//        tv_2_things.setText(TwoThingsSmell.get(0) + ", " + TwoThingsSmell.get(1));
-//        tv_1_thing.setText(OneThingTaste);
 
         ArrayAdapter<String> arrayAdapter5Things = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_listview, FiveThingsSee);
         lv_5_things.setAdapter(arrayAdapter5Things);

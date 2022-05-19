@@ -34,7 +34,6 @@ public class QuoteData {
                         e.printStackTrace();
                     }
                 }
-                //if callback is not null (There's something in our callback)
                 if(callBack != null) callBack.processFinished(quoteArrayList);
 
             }

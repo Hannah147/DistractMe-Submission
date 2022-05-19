@@ -17,7 +17,6 @@ public class quote_fragment extends Fragment {
 
 
     public quote_fragment() {
-        // Required empty public constructor
     }
 
 
@@ -56,9 +55,6 @@ public class quote_fragment extends Fragment {
         return fragment;
     }
 
-    /*
-        Getting different colors for quotes card
-    */
     int getRandomQuoteColor(int colorArray[]){
 
         int color;

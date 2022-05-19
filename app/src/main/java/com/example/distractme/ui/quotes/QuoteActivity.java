@@ -46,9 +46,6 @@ public class QuoteActivity extends AppCompatActivity {
                     fragmentList.add(quoteFragment);
                 }
 
-                /*
-                    Notifying the adapter that things have changed. Very Important.
-                */
                 quoteAdapter.notifyDataSetChanged();
             }
         });

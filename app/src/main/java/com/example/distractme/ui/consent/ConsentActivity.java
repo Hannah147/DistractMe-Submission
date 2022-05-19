@@ -24,9 +24,6 @@ public class ConsentActivity extends AppCompatActivity {
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserID;
     FirebaseDatabase database;
-    FirebaseFirestore mStore;
-    StorageReference storageReference;
-    private DatabaseReference usersDatabase;
     Boolean consent;
 
     @Override
@@ -44,17 +41,6 @@ public class ConsentActivity extends AppCompatActivity {
         } else{
             Log.e("User", "not found...");
         }
-        usersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
-
-//        consent = false;
-//
-//        if(consent == true) {
-//            mDatabase.child(currentUserID).child("CONSENT").setValue(true);
-//        }
-//        else {
-//            mDatabase.child(currentUserID).child("CONSENT").setValue(false);
-//        }
-
     }
 
     public void giveConsent(View view) {

@@ -1,114 +1,3 @@
-//package com.example.distractme;
-//
-//import android.app.ActionBar;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.os.CountDownTimer;
-//import android.os.Handler;
-//import android.view.View;
-//import android.view.animation.AlphaAnimation;
-//import android.widget.Button;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//
-//import com.google.android.youtube.player.YouTubeBaseActivity;
-//import com.google.android.youtube.player.YouTubeInitializationResult;
-//import com.google.android.youtube.player.YouTubePlayer;
-//import com.google.android.youtube.player.YouTubePlayerView;
-//import java.util.Random;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.app.ActivityCompat;
-//
-//import com.example.distractme.ui.distractions.DistractionsFragment;
-//import com.skyfishjy.library.RippleBackground;
-//
-//public class YoutubeActivity extends YouTubeBaseActivity {
-//
-//    final String[] funnyVideosLess1 = {"nHc288IPFzk", "d6gBu2Zd7Bc", "YnCvkGXAsko", "uznUlgpKBzE", "EJlJPJhttrc", "MUINFs1Sp94", "O5DrAxeeUlI", "FBgLytbB-uE", "sK3qJtb_JQo"};
-//    final String[] calmVideosMore1 = {"lSbF9fq3dz8", "Wr6A78FDy_E", "3clqk2U3T9Y", "kd7KC3PaEaA"};
-//    final String[] distractingVideosMore1 = {"A5rUhGZk4ds", "IjeKw0B8PG8", "KiwM0Mwc210", "n-pBTuWYb-Y", "fNlpIYbEjkk"};
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_youtube);
-//        Button btn_funny = findViewById(R.id.btn_funny);
-//        Button btn_calm = findViewById(R.id.btn_calm);
-//        Button btn_distracting = findViewById(R.id.btn_distracting);
-//        final YouTubePlayerView youtubePlayerView = findViewById(R.id.youtubePlayerView);
-//        btn_funny.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Code to randomise youtube link (videoId)
-//                int randomIndexFunny = new Random().nextInt(funnyVideosLess1.length);
-//                String random_funny = funnyVideosLess1[randomIndexFunny];
-//                playVideo(random_funny, youtubePlayerView);
-////                finish();
-////                startActivity(getIntent());
-//            }
-//        });
-//
-//        btn_calm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Code to randomise youtube link (videoId)
-//                int randomIndexCalm = new Random().nextInt(calmVideosMore1.length);
-//                String random_calm = calmVideosMore1[randomIndexCalm];
-//                playVideo(random_calm, youtubePlayerView);
-////                finish();
-////                startActivity(getIntent());
-//            }
-//        });
-//
-//        btn_distracting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // Code to randomise youtube link (videoId)
-//                int randomIndexDistracting = new Random().nextInt(distractingVideosMore1.length);
-//                String random_distracting = calmVideosMore1[randomIndexDistracting];
-//                playVideo(random_distracting, youtubePlayerView);
-////                finish();
-////                startActivity(getIntent());
-//            }
-//        });
-//
-//
-//    }
-//    public void playVideo(final String videoId, YouTubePlayerView youTubePlayerView) {
-//        //initialize youtube player view
-//        youTubePlayerView.initialize("AIzaSyDzoP7sZLzcLW8cgH69viLec58jtYL1APg",
-//                new YouTubePlayer.OnInitializedListener() {
-//                    @Override
-//                    public void onInitializationSuccess(YouTubePlayer.Provider provider,
-//                                                        YouTubePlayer youTubePlayer, boolean b) {
-//                        youTubePlayer.cueVideo(videoId);
-//                    }
-//
-//                    @Override
-//                    public void onInitializationFailure(YouTubePlayer.Provider provider,
-//                                                        YouTubeInitializationResult youTubeInitializationResult) {
-//
-//                    }
-//                });
-//    }
-//
-//
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package com.example.distractme.ui.youtube;
 
 import android.content.Intent;
@@ -145,16 +34,6 @@ public class YoutubeActivity extends YouTubeBaseActivity {
         Button btn_distracting = findViewById(R.id.btn_distracting);
         playVideo();
 
-//        BottomNavigationView navView = findViewById(R.id.nav_view);
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_distractions, R.id.navigation_tracker)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-////        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(navView, navController);
-
         btn_funny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,8 +41,6 @@ public class YoutubeActivity extends YouTubeBaseActivity {
                 int randomIndexFunny = new Random().nextInt(funnyVideosLess1.length);
                 String random_funny = funnyVideosLess1[randomIndexFunny];
                 mYouTubePlayer.cueVideo((random_funny));
-//                finish();
-//                startActivity(getIntent());
             }
         });
 
@@ -174,8 +51,6 @@ public class YoutubeActivity extends YouTubeBaseActivity {
                 int randomIndexCalm = new Random().nextInt(calmVideosMore1.length);
                 String random_calm = calmVideosMore1[randomIndexCalm];
                 mYouTubePlayer.cueVideo((random_calm));
-//                finish();
-//                startActivity(getIntent());
             }
         });
 
@@ -186,15 +61,12 @@ public class YoutubeActivity extends YouTubeBaseActivity {
                 int randomIndexDistracting = new Random().nextInt(distractingVideosMore1.length);
                 String random_distracting = calmVideosMore1[randomIndexDistracting];
                 mYouTubePlayer.cueVideo((random_distracting));
-//                finish();
-//                startActivity(getIntent());
             }
         });
 
 
     }
     public void playVideo() {
-        //initialize youtube player view
         mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubePlayerView);
         mOnInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override

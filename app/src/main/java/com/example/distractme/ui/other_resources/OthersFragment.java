@@ -37,16 +37,6 @@ import java.util.TimerTask;
 
 public class OthersFragment extends Fragment {
 
-    private static final int GALLERY_INTENT_CODE = 1023 ;
-    TextView fullName,email,verifyMsg;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-    String userId;
-    Button resendCode;
-    Button resetPassLocal,changeProfileImage;
-    FirebaseUser user;
-    ImageView profileImage;
-    StorageReference storageReference;
     private OthersViewModel profileViewModel;
     Boolean guestLogin, guestProfile;
     private FirebaseAuth firebaseAuth;
@@ -55,8 +45,8 @@ public class OthersFragment extends Fragment {
     private ViewPager viewPager;
     int currentPage = 0;
     Timer timer;
-    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 10000; // time in milliseconds between successive task executions.
+    final long DELAY_MS = 500;
+    final long PERIOD_MS = 10000;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,24 +54,11 @@ public class OthersFragment extends Fragment {
                 ViewModelProviders.of(this).get(OthersViewModel.class);
         View root = inflater.inflate(R.layout.fragment_others, container, false);
 
-//        guestLogin = false;
-
-//        Intent intentGuest = getActivity().getIntent();
-//        guestLogin = intentGuest.getExtras().getBoolean("guestLogin");
-
-//        if(guestLogin == true) {
-//            guestProfile = true;
-//        } else{
-//            guestProfile = false;
-//        }
-
         quoteAdapter = new QuoteAdapter(getParentFragmentManager(), getFragments());
 
         viewPager = root.findViewById(R.id.viewPager);
         viewPager.setAdapter(quoteAdapter);
-//        viewPager.bringToFront();
 
-        /*After setting the adapter use the timer */
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
@@ -89,7 +66,7 @@ public class OthersFragment extends Fragment {
             }
         };
 
-        timer = new Timer(); // This will create a new Thread
+        timer = new Timer();
         timer.schedule(new TimerTask() { // task to be scheduled
             @Override
             public void run() {
@@ -104,22 +81,11 @@ public class OthersFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-//                if(guestProfile == false) {
-//                    Intent intent = new Intent();
-//                    intent.setClass(getActivity(), ViewProfile.class);
-//                    getActivity().startActivity(intent);
-//                }else {
-//                    Intent intent = new Intent();
-//                    intent.setClass(getActivity(), GuestViewProfile.class);
-//                    getActivity().startActivity(intent);
-//                }
-
                 firebaseAuth = FirebaseAuth.getInstance();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if(user!=null){
                             Intent intent = new Intent(getContext(), ViewProfile.class);
                             startActivity(intent);
-//                            finish();
                         } else {
                             Intent intent = new Intent();
                             intent.setClass(getActivity(), GuestViewProfile.class);
@@ -138,14 +104,8 @@ public class OthersFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-//                Intent intent = new Intent();
-//                intent.setClass(getActivity(), ViewProfile.class);
-//                getActivity().startActivity(intent);
-
                 FirebaseAuth.getInstance().signOut();//logout
                 startActivity(new Intent(getContext(), LoginActivity.class));
-//                finish();
-
             }
         });
 
@@ -174,21 +134,6 @@ public class OthersFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-
-
-//        Button btn_quotes = (Button) root.findViewById(R.id.btn_quote);
-//
-//        btn_quotes.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                Intent intent = new Intent();
-//                intent.setClass(getActivity(), QuoteActivity.class);
-//                getActivity().startActivity(intent);
-//            }
-//        });
-
         return root;
     }
 
@@ -206,11 +151,7 @@ public class OthersFragment extends Fragment {
                     fragmentList.add(quoteFragment);
                 }
 
-                /*
-                    Notifying the adapter that things have changed. Very Important.
-                */
                 quoteAdapter.notifyDataSetChanged();
-//                viewPager.bringToFront();
             }
         });
 

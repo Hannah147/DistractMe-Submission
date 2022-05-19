@@ -36,7 +36,6 @@ import javax.annotation.Nullable;
 
 public class ViewProfile extends AppCompatActivity {
 
-    private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView fullName,email;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;

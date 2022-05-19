@@ -73,14 +73,6 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
-//        profileImageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                startActivityForResult(openGalleryIntent,1000);
-//            }
-//        });
-
         changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -47,7 +47,6 @@ public class FindTheDogActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), "You clicked next!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent();
                 intent.setClass(FindTheDogActivity.this, FindTheSkunkActivity.class);
                 startActivity(intent);

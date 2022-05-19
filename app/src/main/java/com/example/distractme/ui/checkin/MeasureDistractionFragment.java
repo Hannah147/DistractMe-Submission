@@ -26,12 +26,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MeasureDistractionFragment extends Fragment {
     BottomNavigationView navView;
-    Boolean youtube, breathing, grounding, drawing, oddoneout, gosomewhere, comeFromMeasure = true, clickedback, switched;
+    Boolean youtube, breathing, grounding, drawing, oddoneout, gosomewhere, clickedback;
     Button btn_youtube, btn_54321, btn_breathing, btn_draw, btn_oddoneout, btn_somewhere, btn_back, btn_checkin;
     ImageView ivYoutube, iv54321, ivBreathing, ivDraw, ivOddoneout, ivSomewhere;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /** Inflating the layout for this fragment **/
         View root = inflater.inflate(R.layout.fragment_measure_distraction, container, false);
 
         btn_checkin = (Button) getActivity().findViewById(R.id.predict_button);
@@ -53,13 +52,6 @@ public class MeasureDistractionFragment extends Fragment {
 
         MeasureEmotionActivity activity = (MeasureEmotionActivity) getActivity();
 
-//        youtube = getArguments().getBoolean("youtube");
-//        breathing = getArguments().getBoolean("breathing");
-//        grounding = getArguments().getBoolean("grounding");
-//        drawing = getArguments().getBoolean("drawing");
-//        oddoneout = getArguments().getBoolean("oddoneout");
-//        gosomewhere = getArguments().getBoolean("gosomewhere");
-
         youtube = activity.getYoutube();
         breathing = activity.getBreathing();
         grounding = activity.getGrounding();
@@ -73,12 +65,6 @@ public class MeasureDistractionFragment extends Fragment {
                 Toast.LENGTH_LONG)
                 .show();
 
-//        btn_54321.setBackgroundColor(Color.parseColor("#0000FF"));
-//        btn_youtube.setBackgroundColor(Color.parseColor("#0000FF"));
-//        btn_breathing.setBackgroundColor(Color.parseColor("#0000FF"));
-//        btn_draw.setBackgroundColor(Color.parseColor("#0000FF"));
-//        btn_oddoneout.setBackgroundColor(Color.parseColor("#0000FF"));
-//        btn_somewhere.setBackgroundColor(Color.parseColor("#0000FF"));
         CheckRecommended();
 
         btn_back.setOnClickListener(new View.OnClickListener()
@@ -87,11 +73,6 @@ public class MeasureDistractionFragment extends Fragment {
             public void onClick(View v)
             {
                 clickedback = true;
-//                MeasureEmotionActivity activity = new MeasureEmotionActivity();
-//                Bundle bundle = new Bundle();
-//                bundle.putBoolean("clickedback", clickedback);
-//                activity.setArguments(bundle);
-
                 Bundle clickedData = new Bundle();
                 clickedData.putBoolean("clickedback", clickedback);
                 Intent intent = getActivity().getIntent();

@@ -45,20 +45,6 @@ public class EmergencyHelplineActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onNewIntent(Intent intent){
-//        super.onNewIntent(intent);
-//        btn_emergencyHelplines = findViewById(R.id.btn_EmergencyServices);
-//        Boolean emergency = intent.getExtras().getBoolean("emergency");
-//            if(emergency) {
-//                btn_emergencyHelplines.performClick();
-//                btn_emergencyHelplines.setPressed(true);
-//            }
-//
-//    }
-
-
-
     public void showTextHelpline(View view) {
         TextHelplineHeading = "Text About It - 50808";
         TextHelplineBody = "50808 is a free, anonymous, 24/7 messaging service providing everything from a calming chat to immediate support. " +
@@ -301,10 +287,7 @@ public class EmergencyHelplineActivity extends AppCompatActivity {
     }
 
     public void backToOthers(View view) {
-        Integer fragment_load;
-        fragment_load = 4;
         Intent i = new Intent(EmergencyHelplineActivity.this, MainActivity.class);
         startActivity(i);
-// Now start your activity
     }
 }

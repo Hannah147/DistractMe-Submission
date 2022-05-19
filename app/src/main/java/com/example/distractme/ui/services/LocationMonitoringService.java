@@ -19,11 +19,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-
-/**
- * Created by devdeeds.com on 27-09-2017.
- */
-
 public class LocationMonitoringService extends Service implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
@@ -46,19 +41,12 @@ public class LocationMonitoringService extends Service implements
                 .addApi(LocationServices.API)
                 .build();
 
-
-//        mLocationRequest.setInterval(Constants.LOCATION_INTERVAL);
-//        mLocationRequest.setFastestInterval(Constants.FASTEST_LOCATION_INTERVAL);
-
-
-        int priority = LocationRequest.PRIORITY_HIGH_ACCURACY; //by default
-        //PRIORITY_BALANCED_POWER_ACCURACY, PRIORITY_LOW_POWER, PRIORITY_NO_POWER are the other priority modes
+        int priority = LocationRequest.PRIORITY_HIGH_ACCURACY;
 
 
         mLocationRequest.setPriority(priority);
         mLocationClient.connect();
 
-        //Make it stick to the notification panel so it is less prone to get cancelled by the Operating System.
         return START_STICKY;
     }
 
@@ -68,22 +56,10 @@ public class LocationMonitoringService extends Service implements
         return null;
     }
 
-    /*
-     * LOCATION CALLBACKS
-     */
     @Override
     public void onConnected(Bundle dataBundle) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-
             Log.d(TAG, "== Error On onConnected() Permission not granted");
-            //Permission not granted by user so cancel the further execution.
 
             return;
         }
@@ -92,17 +68,12 @@ public class LocationMonitoringService extends Service implements
         Log.d(TAG, "Connected to Google API");
     }
 
-    /*
-     * Called by Location Services if the connection to the
-     * location client drops because of an error.
-     */
     @Override
     public void onConnectionSuspended(int i) {
         Log.d(TAG, "Connection suspended");
     }
 
 
-    //to get the location change
     @Override
     public void onLocationChanged(Location location) {
         Log.d(TAG, "Location changed");
@@ -111,7 +82,6 @@ public class LocationMonitoringService extends Service implements
         if (location != null) {
             Log.d(TAG, "== location != null");
 
-            //Send result to activities
             sendMessageToUI(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude()));
         }
 

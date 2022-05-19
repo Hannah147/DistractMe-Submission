@@ -16,11 +16,7 @@ import com.skyfishjy.library.RippleBackground;
 
 public class BreatheOutActivity extends AppCompatActivity {
 
-    Integer i = 0;
-    Boolean back_button = false;
     TextView tv_breathe_out;
-    AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f );
-    AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
     Handler handler;
     Runnable runnable;
     @Override
@@ -48,23 +44,10 @@ public class BreatheOutActivity extends AppCompatActivity {
 
     }
 
-    public void start_animation(View view) {
-//        CardView cardViewCircular = (CardView) findViewById(R.id.cv_round);
-//        cardViewCircular.animate().scaleYBy(30f).scaleXBy(30f); //deflating is -50f
-//        cardViewCircular.animate().scaleYBy(-50f).scaleXBy(-50f); //deflating is -50f
-
-//        Button btn_animation = (Button) findViewById(R.id.btn_animation);
-//        Animation sgAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shrink_grow);
-//        btn_animation.startAnimation(sgAnimation);
-
-    }
-
     public void return_to_distractions(View view) {
         final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        intent.putExtra("EXIT", true);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         handler.removeCallbacks(runnable);
         rippleBackground.stopRippleAnimation();

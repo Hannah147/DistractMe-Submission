@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_consent.xml" value="0.33" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_measure_emotion.xml" value="0.1" />
-        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_maps.xml" value="0.5" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_measure_emotion.xml" value="0.7699619771863118" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_measure_distraction.xml" value="0.1" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_others.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_tracker.xml" value="0.1" />
       </map>
     </option>
   </component>

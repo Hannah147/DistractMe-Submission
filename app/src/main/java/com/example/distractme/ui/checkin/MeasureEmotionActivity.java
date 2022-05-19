@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.distractme.MainActivity;
 import com.example.distractme.R;
 import com.example.distractme.ui.emergencyhelplines.EmergencyHelplineActivity;
 import com.google.android.gms.tasks.Continuation;
@@ -49,7 +50,7 @@ public class MeasureEmotionActivity extends AppCompatActivity {
     private String currentUserID;
     FirebaseDatabase database;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+    int counter = 0;
 
     float positiveResult;
     String moodResult, answerCheck;
@@ -84,31 +85,6 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                 (View v) -> {
                     classify(inputEditText.getText().toString());
                     answerCheck = inputEditText.getText().toString();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putBoolean("youtube", youtube);
-//                    bundle.putBoolean("breathing", breathing);
-//                    bundle.putBoolean("grounding", grounding);
-//                    bundle.putBoolean("drawing", drawing);
-//                    bundle.putBoolean("oddoneout", oddoneout);
-//                    bundle.putBoolean("gosomewhere", gosomewhere);
-
-//// Set Fragmentclass Arguments
-//                    DistractionsFragment fragobj = new DistractionsFragment();
-//                    fragobj.setArguments(bundle);
-
-//                    Intent i = new Intent(MeasureEmotionActivity.this, MainActivity.class);
-//
-////                    String fragment = "distractions";//
-////                    i.putExtra("fragment", fragment);
-//                    i.putExtra("switched", switched);
-//
-//                    startActivity(i);
-
-
-//                    HomeFragment fragment = new HomeFragment();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putBoolean("switched", switched);
-//                    fragment.setArguments(bundle);
 
                 });
 
@@ -134,8 +110,6 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                 if (clickedData != null)
                 {
                     Boolean clickedback = clickedData.getBoolean("clickedback");
-                    Toast.makeText(MeasureEmotionActivity.this, "Bundle is there YAYYY", Toast.LENGTH_SHORT).show();
-
                 }
                 else if (clickedData == null)
                 {
@@ -152,21 +126,9 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                 () -> {
                     // TODO 7: Run sentiment analysis on the input text
                     List<Category> results = textClassifier.classify(text);
-
+                    counter++;
                     // TODO 8: Convert the result to a human-readable text
-                    // old method -------------------------------------------------------------------------
-//                    String textToShow = "Input: " + text + "\nOutput:\n";
-//                    for (int i = 0; i < results.size(); i++) {
-//                        Category result = results.get(i);
-//                        textToShow +=
-//                                String.format("    %s: %s\n", result.getLabel(), result.getScore());
-//                        positiveResult = result.getScore();
-//                    }
-//                    textToShow += "---------\n";
-
-                    // end of old method ------------------------------------------------------------------
-
-                    String textToShow = "Input: " + text + "\n";
+                    String textToShow = counter + ") " + text + "\n";
                     for (int i = 0; i < results.size(); i++) {
                         Category result = results.get(i);;
                         positiveResult = result.getScore();
@@ -199,26 +161,8 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                     // Scroll to the bottom to show latest entry's classification result.
                     scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
 
-//                    Toast.makeText(
-//                            this,
-//                            "Positive Result: " + positiveResult,
-//                            Toast.LENGTH_LONG)
-//                            .show();
-
-//                    Boolean found = Arrays.asList(answerCheck.split(" ")).contains("suicidal");
-
                     Boolean found = false;
 
-//                    for (int i = 0; i < dangerousWords.size(); i++) {
-//                        if (dangerousWords.get(i).contains(answerCheck)) {
-//                            System.out.println(dangerousWords.get(i));
-//                            found = true;
-//                        }
-//                    }
-
-//                    if(Arrays.asList(dangerousWords).contains(answerCheck.split(" "))) {
-//                        found = true;
-//                    }
 
                     for (int i = 0; i < dangerousWords.size(); i++) {
 
@@ -319,6 +263,8 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                         }
 
                     }
+
+                    goToDistractions();
                 });
     }
 
@@ -360,7 +306,7 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                 });
     }
 
-    public void goToDistractions(View view) {
+    public void goToDistractions() {
 //        Intent intent = new Intent(MeasureEmotionActivity.this, MainActivity.class);
 //        intent.putExtra("switched", switched);
 //        startActivity(intent);
@@ -422,5 +368,11 @@ public class MeasureEmotionActivity extends AppCompatActivity {
 
     public Boolean getGoSomewhere() {
         return gosomewhere;
+    }
+
+    public void goHome(View view) {
+        Intent intent = new Intent();
+        intent.setClass(MeasureEmotionActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
