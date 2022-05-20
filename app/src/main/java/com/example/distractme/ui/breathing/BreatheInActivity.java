@@ -52,6 +52,8 @@ public class BreatheInActivity extends AppCompatActivity {
         handler.removeCallbacks(runnable);
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("fragment", distractionsFragment);
         intent.putExtra("back_to_distraction", back_to_distraction);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         BreatheInActivity.this.finish();

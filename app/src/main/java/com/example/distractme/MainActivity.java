@@ -3,8 +3,10 @@ package com.example.distractme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -15,7 +17,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.distractme.ui.consent.ConsentActivity;
 import com.example.distractme.ui.distractions.DistractionsFragment;
+import com.example.distractme.ui.home.HomeFragment;
 import com.example.distractme.ui.other_resources.OthersFragment;
+import com.example.distractme.ui.tracker.TrackerFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +32,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
+//public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 public class MainActivity extends AppCompatActivity {
+
 
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
@@ -40,10 +46,18 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference usersDatabase;
     boolean consent;
     String consentcheck;
-
+    String intentFragment;
     private OthersFragment others;
     Boolean resumed = false, switched = false;
     BottomNavigationView bottomNav;
+    int counter = 0;
+
+    Fragment fragmentOthers;
+    Fragment fragmentTracker;
+    Fragment fragmentDistraction;
+    Fragment fragmentHome;
+
+    FragmentTransaction clearTransaction = getSupportFragmentManager().beginTransaction();
 
 //    private LocationManager locationMangaer = null;
 //    private LocationListener locationListener = null;
@@ -69,6 +83,18 @@ public class MainActivity extends AppCompatActivity {
             Log.e("User", "not found...");
         }
         usersDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+
+//        fragmentHome = new HomeFragment();
+//        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentHome).commit();
+//
+//        fragmentDistraction = new DistractionsFragment();
+//        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentDistraction).commit();
+//
+//        fragmentTracker = new TrackerFragment();
+//        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentTracker).commit();
+//
+//        fragmentOthers = new OthersFragment();
+//        getSupportFragmentManager().beginTransaction().add(R.id.container, fragmentOthers).commit();
 
 //        mDatabase.child(currentUserID).child("CONSENT").setValue(false);
 
@@ -110,14 +136,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        getConsent();
-        Toast.makeText(getApplicationContext(), "check consent (outside): " + consentcheck, Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(), "check user: " + currentUserID, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "check consent (outside): " + consentcheck, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "check user: " + currentUserID, Toast.LENGTH_LONG).show();
         if(currentUserID != null){
             getConsent();
-            Toast.makeText(getApplicationContext(), "check consent (user): " + consent, Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "check consent (user): " + consent, Toast.LENGTH_LONG).show();
         } else {
 //            consent = false;
-            Toast.makeText(getApplicationContext(), "check consent (other): " + consent, Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "check consent (other): " + consent, Toast.LENGTH_LONG).show();
         }
 
         if(consent = false) {
@@ -128,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                     R.id.navigation_home, R.id.navigation_others, R.id.navigation_distractions, R.id.navigation_tracker)
                     .build();
@@ -136,8 +161,182 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
             NavigationUI.setupWithNavController(navView, navController);
 
+//        navView.setOnNavigationItemSelectedListener(this);
+//        navView.bringToFront();
 
-    }
+        Intent i = getIntent();
+        String fragmentName = i.getStringExtra("fragment");
+        String distractions = "FRAGMENT_DISTRACTIONS";
+        Log.e("Test1", "Test1" + fragmentName);
+//        if(fragmentName != null && fragmentName.equals(distractions)){
+//            Fragment fragmentDistraction = new DistractionsFragment();
+//            FragmentTransaction transactionDistraction = getSupportFragmentManager().beginTransaction();
+//            transactionDistraction.add(R.id.container, fragmentDistraction, "second");
+//            transactionDistraction.commit();
+//        }
+
+//        if(fragmentName != null) {
+//            switch(fragmentName){
+//                case "FRAGMENT_HOME":
+//                    FragmentTransaction transactionHome = getSupportFragmentManager().beginTransaction();
+//                    transactionHome.replace(R.id.container, fragmentHome, "home");
+//                    navView.setSelectedItemId(R.id.navigation_home);
+//                    transactionHome.addToBackStack(null);
+//                    transactionHome.hide(fragmentTracker);
+//                    transactionHome.hide(fragmentDistraction);
+//                    transactionHome.hide(fragmentOthers);
+//                    transactionHome.commit();
+//                    break;
+//                case "FRAGMENT_DISTRACTIONS":
+//                    FragmentTransaction transactionDistraction = getSupportFragmentManager().beginTransaction();
+//                    transactionDistraction.replace(R.id.container, fragmentDistraction, "distraction");
+//                    navView.setSelectedItemId(R.id.navigation_distractions);
+//                    transactionDistraction.addToBackStack(null);
+//                    transactionDistraction.hide(fragmentTracker);
+//                    transactionDistraction.hide(fragmentHome);
+//                    transactionDistraction.hide(fragmentOthers);
+//                    transactionDistraction.commit();
+//                    break;
+//                case "FRAGMENT_TRACKER":
+//                    FragmentTransaction transactionTracker = getSupportFragmentManager().beginTransaction();
+//                    transactionTracker.replace(R.id.container, fragmentTracker, "tracker");
+//                    navView.setSelectedItemId(R.id.navigation_tracker);
+//                    transactionTracker.addToBackStack(null);
+//                    transactionTracker.hide(fragmentDistraction);
+//                    transactionTracker.hide(fragmentHome);
+//                    transactionTracker.hide(fragmentOthers);
+//                    transactionTracker.commit();
+//                    break;
+//                case "FRAGMENT_OTHERS":
+//                    FragmentTransaction transactionOthers = getSupportFragmentManager().beginTransaction();
+//                    transactionOthers.replace(R.id.container, fragmentOthers, "others");
+//                    navView.setSelectedItemId(R.id.navigation_others);
+//                    transactionOthers.hide(fragmentDistraction);
+//                    transactionOthers.hide(fragmentHome);
+//                    transactionOthers.hide(fragmentTracker);
+//                    transactionOthers.addToBackStack(null);
+//                    transactionOthers.commit();
+//                    break;
+//            }
+        }
+
+//        clearTransaction.detach(fragmentOthers);
+//        clearTransaction.detach(fragmentTracker);
+//        clearTransaction.detach(fragmentDistraction);
+
+
+//        clearTransaction.detach(fragmentHome);
+
+
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        switch(item.getItemId())
+//        {
+//            case R.id.navigation_home:
+////                FragmentTransaction transactionHome = getSupportFragmentManager().beginTransaction();
+////                transactionHome.add(R.id.container, fragmentHome, "home");
+////                clearTransaction.remove(fragmentOthers);
+////                clearTransaction.remove(fragmentTracker);
+////                clearTransaction.remove(fragmentDistraction);
+////                transactionHome.commit();
+//                getSupportFragmentManager().beginTransaction().show(fragmentHome).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentDistraction).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentTracker).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentOthers).commit();
+//                Toast.makeText(this, "Home clicked", Toast.LENGTH_LONG).show();
+//                break;
+//            case R.id.navigation_distractions:
+////                FragmentTransaction transactionDistraction = getSupportFragmentManager().beginTransaction();
+////                transactionDistraction.add(R.id.container, fragmentDistraction, "distraction");
+////                clearTransaction.remove(fragmentOthers);
+////                clearTransaction.remove(fragmentTracker);
+////                clearTransaction.remove(fragmentHome);
+////                transactionDistraction.commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentHome).commit();
+//                getSupportFragmentManager().beginTransaction().show(fragmentDistraction).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentTracker).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentOthers).commit();
+//                Toast.makeText(this, "distractions clicked", Toast.LENGTH_LONG).show();
+//                break;
+//            case R.id.navigation_tracker:
+////                FragmentTransaction transactionTracker = getSupportFragmentManager().beginTransaction();
+////                transactionTracker.add(R.id.container, fragmentTracker, "tracker");
+////                clearTransaction.remove(fragmentOthers);
+////                clearTransaction.remove(fragmentHome);
+////                clearTransaction.remove(fragmentDistraction);
+//                Toast.makeText(this, "tracker clicked", Toast.LENGTH_LONG).show();
+////                transactionTracker.commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentHome).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentDistraction).commit();
+//                getSupportFragmentManager().beginTransaction().show(fragmentTracker).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentOthers).commit();
+//
+//                break;
+//            case R.id.navigation_others:
+////                FragmentTransaction transactionOthers = getSupportFragmentManager().beginTransaction();
+////                transactionOthers.add(R.id.container, fragmentOthers, "others");
+////                clearTransaction.remove(fragmentHome);
+////                clearTransaction.remove(fragmentTracker);
+////                clearTransaction.remove(fragmentDistraction);
+////                transactionOthers.commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentHome).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentDistraction).commit();
+//                getSupportFragmentManager().beginTransaction().hide(fragmentTracker).commit();
+//                getSupportFragmentManager().beginTransaction().show(fragmentOthers).commit();
+//                Toast.makeText(this, "others clicked", Toast.LENGTH_LONG).show();
+//                break;
+//        }
+//        return true;
+//    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//        if(counter > 1){
+//            Intent i = getIntent();
+//            String fragmentName = i.getStringExtra("fragment");
+//            String distractions = "FRAGMENT_DISTRACTIONS";
+//            Log.e("Test1", "Test1" + fragmentName);
+//            if(fragmentName != null && fragmentName.equals(distractions)){
+//                Fragment fragmentDistraction = new DistractionsFragment();
+//                FragmentTransaction transactionDistraction = getSupportFragmentManager().beginTransaction();
+//                transactionDistraction.add(R.id.container, fragmentDistraction, "second");
+//                transactionDistraction.commit();
+//            }
+//            intentFragment = getIntent().getExtras().getString("frgToLoad");
+//            switch(intentFragment){
+//                case "FRAGMENT_HOME":
+//                    Fragment fragmentHome = new HomeFragment();
+//                    FragmentTransaction transactionHome = getSupportFragmentManager().beginTransaction();
+//                    transactionHome.add(R.id.container, fragmentHome, "second");
+//                    transactionHome.commit();
+//                    break;
+//                case "FRAGMENT_DISTRACTIONS":
+//                    Fragment fragmentDistraction = new DistractionsFragment();
+//                    FragmentTransaction transactionDistraction = getSupportFragmentManager().beginTransaction();
+//                    transactionDistraction.add(R.id.container, fragmentDistraction, "second");
+//                    transactionDistraction.commit();
+//                    break;
+//                case "FRAGMENT_TRACKER":
+//                    Fragment fragmentTracker = new TrackerFragment();
+//                    FragmentTransaction transactionTracker = getSupportFragmentManager().beginTransaction();
+//                    transactionTracker.add(R.id.container, fragmentTracker, "second");
+//                    transactionTracker.commit();
+//                    break;
+//                case "FRAGMENT_OTHERS":
+//                    Fragment fragmentOther = new TrackerFragment();
+//                    FragmentTransaction transactionOther = getSupportFragmentManager().beginTransaction();
+//                    transactionOther.add(R.id.container, fragmentOther, "second");
+//                    transactionOther.commit();
+//                    break;
+//            }
+//        }
+//
+//        counter++;
+//        Toast.makeText(getApplicationContext(), "check counter: " + counter, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "check fragment: " + intentFragment, Toast.LENGTH_LONG).show();    }
+
 
     public void getConsent() {
 

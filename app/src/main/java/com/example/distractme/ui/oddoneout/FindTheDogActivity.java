@@ -61,6 +61,8 @@ public class FindTheDogActivity extends AppCompatActivity {
     public void return_to_distractions(View view) {
         Intent intent = new Intent();
         intent.setClass(FindTheDogActivity.this, MainActivity.class);
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("fragment", distractionsFragment);
         startActivity(intent);
 
     }

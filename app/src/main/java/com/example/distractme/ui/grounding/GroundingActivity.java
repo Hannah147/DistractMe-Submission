@@ -110,6 +110,8 @@ public class GroundingActivity extends AppCompatActivity {
     public void return_to_distractions(View view) {
         Intent intent = new Intent();
         intent.setClass(GroundingActivity.this, MainActivity.class);
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("fragment", distractionsFragment);
         startActivity(intent);
     }
 

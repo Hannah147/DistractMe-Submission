@@ -412,6 +412,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void startActivity(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("fragment", distractionsFragment);
         startActivity(intent);
 
     }

@@ -288,6 +288,8 @@ public class EmergencyHelplineActivity extends AppCompatActivity {
 
     public void backToOthers(View view) {
         Intent i = new Intent(EmergencyHelplineActivity.this, MainActivity.class);
+//        String othersFragment = "FRAGMENT_OTHERS";
+//        i.putExtra("fragment", othersFragment);
         startActivity(i);
     }
 }

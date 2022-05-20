@@ -48,6 +48,8 @@ public class BreatheOutActivity extends AppCompatActivity {
         final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("fragment", distractionsFragment);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         handler.removeCallbacks(runnable);
         rippleBackground.stopRippleAnimation();

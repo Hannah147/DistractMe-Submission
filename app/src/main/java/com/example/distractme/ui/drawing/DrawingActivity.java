@@ -241,6 +241,8 @@ public class DrawingActivity extends AppCompatActivity {
     public void return_to_distractions(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("fragment", distractionsFragment);
         startActivity(intent);
     }
 }

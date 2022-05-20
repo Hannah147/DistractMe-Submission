@@ -129,6 +129,8 @@ public class Register extends AppCompatActivity {
                             guestLogin = false;
                             Intent intent = new Intent();
                             intent.putExtra("guestLogin", guestLogin);
+//                            String othersFragment = "FRAGMENT_OTHERS";
+//                            intent.putExtra("fragment", othersFragment);
                             intent.setClass(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                         }else {

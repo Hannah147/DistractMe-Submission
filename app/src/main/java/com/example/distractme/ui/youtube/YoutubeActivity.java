@@ -88,8 +88,14 @@ public class YoutubeActivity extends YouTubeBaseActivity {
 
 
     public void return_to_distractions(View view) {
-        Intent intent = new Intent();
-        intent.setClass(YoutubeActivity.this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent();
+//        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+//        intent.putExtra("frgToLoad", distractionsFragment);
+//        intent.setClass(YoutubeActivity.this, MainActivity.class);
+//        startActivity(intent);
+        Intent i = new Intent(YoutubeActivity.this, MainActivity.class);
+        String distractionsFragment = "FRAGMENT_DISTRACTIONS";
+        i.putExtra("fragment", distractionsFragment);
+        startActivity(i);
     }
 }
