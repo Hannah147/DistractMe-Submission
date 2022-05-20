@@ -19,7 +19,6 @@ public class EmergencyHelplineActivity extends AppCompatActivity {
     String TextHelplineHeading, TextHelplineBody, EmergencyNumbersHeading, EmergencyNumbersBody,SamaritansHeading, SamaritansBody, PietaHeading, PietaBody, ChildlineHeading, ChildlineBody, AwareHelplineHeading, AwareHelplineBody;
     Integer event;
     Button btn_choose_event, btn_choose_event_2, btn_choose_event_3, btn_emergencyHelplines;
-    private OthersFragment OthersFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,8 +287,6 @@ public class EmergencyHelplineActivity extends AppCompatActivity {
 
     public void backToOthers(View view) {
         Intent i = new Intent(EmergencyHelplineActivity.this, MainActivity.class);
-//        String othersFragment = "FRAGMENT_OTHERS";
-//        i.putExtra("fragment", othersFragment);
         startActivity(i);
     }
 }

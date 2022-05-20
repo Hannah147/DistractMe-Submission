@@ -166,8 +166,6 @@ public class ViewProfile extends AppCompatActivity {
                 i.putExtra("fullName",fullName.getText().toString());
                 i.putExtra("email",email.getText().toString());
                 startActivity(i);
-//
-
             }
         });
 
@@ -187,8 +185,6 @@ public class ViewProfile extends AppCompatActivity {
     public void backtologin(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-//        String othersFragment = "FRAGMENT_OTHERS";
-//        intent.putExtra("fragment", othersFragment);
         startActivity(intent);
     }
 }

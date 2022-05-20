@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:tag="fragment_consent"
     android:background="@drawable/distract_me_background"
-    tools:context=".ui.consent.ConsentFragment">
+    tools:context=".ui.consent.ConsentActivity">
 
 
     <TextView

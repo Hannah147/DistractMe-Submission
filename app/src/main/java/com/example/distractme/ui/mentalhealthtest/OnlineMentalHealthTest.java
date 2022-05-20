@@ -165,8 +165,6 @@ public class OnlineMentalHealthTest extends AppCompatActivity {
     public void return_to_home(View view) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-//        String othersFragment = "FRAGMENT_OTHERS";
-//        intent.putExtra("fragment", othersFragment);
         startActivity(intent);
     }
 }

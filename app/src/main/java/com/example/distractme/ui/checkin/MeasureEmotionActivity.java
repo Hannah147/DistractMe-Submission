@@ -36,9 +36,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-//import androidx.fragment.app.Fragment;
-//import androidx.fragment.app.FragmentTransaction;
-
 public class MeasureEmotionActivity extends AppCompatActivity {
     private TextView resultTextView;
     private EditText inputEditText;
@@ -135,15 +132,7 @@ public class MeasureEmotionActivity extends AppCompatActivity {
                     }
 
                     mDatabase.child(currentUserID).child("WordAnalysis").child(text).setValue(true);
-
-
-                    // Show classification result on screen
                     showResult(textToShow);
-//                    Intent intent = new Intent();
-//                    intent.setClass(this, TestActivity.class);
-//                    intent.putExtra("text", resultsStr);
-//                    startActivity(intent);
-
                 });
     }
 
@@ -307,43 +296,12 @@ public class MeasureEmotionActivity extends AppCompatActivity {
     }
 
     public void goToDistractions() {
-//        Intent intent = new Intent(MeasureEmotionActivity.this, MainActivity.class);
-//        intent.putExtra("switched", switched);
-//        startActivity(intent);
-
-
-        // ----------------------- code that did work -------------------------------
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         MeasureDistractionFragment hello = new MeasureDistractionFragment();
         fragmentTransaction.add(R.id.fragment_container, hello, "Distraction");
         fragmentTransaction.commit();
         btn_checkin.setVisibility(View.INVISIBLE);
-
-        // -------------------
-        // ---- code that did work ------------------------------
-
-//        Fragment fragment = MeasureDistractionFragment.newInstance();
-//
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//        transaction.replace(R.id.container_layout, fragment).commit();        btn_checkin.setVisibility(View.INVISIBLE);
-
-
-        //                    HomeFragment fragment = new HomeFragment();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putBoolean("switched", switched);
-//                    fragment.setArguments(bundle);
-
-//        MeasureDistractionFragment fragment = new MeasureDistractionFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putBoolean("youtube", youtube);
-//        bundle.putBoolean("breathing", breathing);
-//        bundle.putBoolean("grounding", grounding);
-//        bundle.putBoolean("drawing", drawing);
-//        bundle.putBoolean("oddoneout", oddoneout);
-//        bundle.putBoolean("gosomewhere", gosomewhere);
-//        fragment.setArguments(bundle);
     }
 
     public Boolean getYoutube() {

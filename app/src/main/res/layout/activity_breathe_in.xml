@@ -6,51 +6,6 @@
     android:layout_height="match_parent"
     android:background="#ecebf3">
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_confirmation"-->
-<!--        android:layout_width="236dp"-->
-<!--        android:layout_height="130dp"-->
-<!--        android:text="YOU MADE IT"-->
-<!--        android:textSize="52dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.56"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_animation"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        android:background="@drawable/round_button_breathe_in"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
-
-
-
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:id="@+id/cv_round"-->
-<!--        android:layout_width="40dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        app:cardCornerRadius="20dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">// -> this makes it look circular-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#000000" />-->
-<!--    </androidx.cardview.widget.CardView>-->
-
-
     <com.skyfishjy.library.RippleBackground
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -83,21 +38,6 @@
         app:layout_constraintStart_toStartOf="@+id/content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.865" />
-
-<!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="35dp"-->
-<!--        android:textSize="20dp"-->
-<!--        android:background="?android:attr/selectableItemBackground"-->
-<!--        android:fontFamily="@font/kgkeepyourheadup"-->
-<!--        android:onClick="return_to_distractions"-->
-<!--        android:text="Need Another Distraction?"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.03" />-->
 
     <ImageButton
         android:id="@+id/imageButton2"

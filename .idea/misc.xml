@@ -3,14 +3,39 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_breathe_in.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_breathe_in_repeat.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_breathe_out.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_consent.xml" value="0.33" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_drawing.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_edit_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_emergency_helpline.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_find_the_dancer.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_five_things_see.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_four_things_touch.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_grounding.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_guest_view_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_maps.xml" value="0.5" />
-        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_measure_emotion.xml" value="0.7699619771863118" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_measure_emotion.xml" value="0.42689295039164493" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_one_thing_taste.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_online_mental_health_test.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_register.xml" value="0.75" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_three_things_hear.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_two_things_smell.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_view_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/activity_youtube.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/custom_listview.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/customdialogdancer.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_dialog_stroke_selector.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_distractions.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_measure_distraction.xml" value="0.1" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_others.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_quote.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/fragment_tracker.xml" value="0.1" />
+        <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/layout/recyclerview_row.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/S00189764/AndroidStudioProjects/DistractMe/app/src/main/res/menu/menu_main.xml" value="0.1" />
       </map>
     </option>
